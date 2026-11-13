@@ -1,0 +1,2282 @@
+{
+  "zones": [
+    {
+      "code": "D-01",
+      "name": "Central",
+      "bureau": "Central",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 29.82,
+      "profileShares": {
+        "P01": 26.8,
+        "P02": 20.7,
+        "P03": 6.07,
+        "P04": 29.82,
+        "P05": 2.72,
+        "P06": 13.89
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.749,
+      "x": 618.1,
+      "y": 451.6,
+      "lat": 34.0466,
+      "lng": -118.2437,
+      "inc12": 15130,
+      "prev": 1436,
+      "forecast": 1127,
+      "deltaPct": -21.5,
+      "mae": 1.789,
+      "night": 36.5,
+      "weekend": 29.5,
+      "weapon": 39.6,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 53.13
+        },
+        {
+          "k": "Personas",
+          "v": 29.58
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.77
+        },
+        {
+          "k": "Fraude",
+          "v": 4.01
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.7
+        },
+        {
+          "k": "Otros",
+          "v": 0.81
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 44.63
+        },
+        {
+          "k": "Residencia",
+          "v": 20.4
+        },
+        {
+          "k": "Comercio",
+          "v": 15.24
+        },
+        {
+          "k": "Vehículo",
+          "v": 7.71
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.56
+        },
+        {
+          "k": "Otros",
+          "v": 10.46
+        }
+      ],
+      "spark": [
+        1514,
+        1542,
+        1332,
+        1351,
+        1365,
+        1297,
+        1302,
+        1345,
+        1370,
+        1341,
+        1436,
+        1449
+      ]
+    },
+    {
+      "code": "D-02",
+      "name": "Rampart",
+      "bureau": "Central",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 33.14,
+      "profileShares": {
+        "P01": 24.96,
+        "P02": 16.7,
+        "P03": 6.27,
+        "P04": 33.14,
+        "P05": 2.62,
+        "P06": 16.32
+      },
+      "priorityProfile": "P01",
+      "priorityScore": 0.651,
+      "x": 584.9,
+      "y": 436.3,
+      "lat": 34.0567,
+      "lng": -118.2701,
+      "inc12": 10361,
+      "prev": 992,
+      "forecast": 833,
+      "deltaPct": -16.0,
+      "mae": 1.657,
+      "night": 35.9,
+      "weekend": 28.5,
+      "weapon": 41.8,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 47.61
+        },
+        {
+          "k": "Personas",
+          "v": 32.92
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.25
+        },
+        {
+          "k": "Fraude",
+          "v": 6.96
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.6
+        },
+        {
+          "k": "Otros",
+          "v": 0.67
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 42.32
+        },
+        {
+          "k": "Residencia",
+          "v": 32.64
+        },
+        {
+          "k": "Comercio",
+          "v": 10.49
+        },
+        {
+          "k": "Vehículo",
+          "v": 7.76
+        },
+        {
+          "k": "Espacio público",
+          "v": 2.52
+        },
+        {
+          "k": "Otros",
+          "v": 4.27
+        }
+      ],
+      "spark": [
+        883,
+        937,
+        807,
+        928,
+        919,
+        1028,
+        894,
+        1008,
+        915,
+        991,
+        992,
+        942
+      ]
+    },
+    {
+      "code": "D-03",
+      "name": "Southwest",
+      "bureau": "South",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 32.84,
+      "profileShares": {
+        "P01": 25.33,
+        "P02": 15.81,
+        "P03": 5.42,
+        "P04": 32.84,
+        "P05": 2.81,
+        "P06": 17.78
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.666,
+      "x": 543.5,
+      "y": 505.5,
+      "lat": 34.011,
+      "lng": -118.303,
+      "inc12": 11859,
+      "prev": 1164,
+      "forecast": 909,
+      "deltaPct": -21.9,
+      "mae": 1.718,
+      "night": 34.1,
+      "weekend": 28.6,
+      "weapon": 38.2,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 46.19
+        },
+        {
+          "k": "Personas",
+          "v": 32.58
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.01
+        },
+        {
+          "k": "Fraude",
+          "v": 8.63
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.79
+        },
+        {
+          "k": "Otros",
+          "v": 0.8
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 38.46
+        },
+        {
+          "k": "Residencia",
+          "v": 37.66
+        },
+        {
+          "k": "Comercio",
+          "v": 9.69
+        },
+        {
+          "k": "Vehículo",
+          "v": 6.96
+        },
+        {
+          "k": "Espacio público",
+          "v": 3.48
+        },
+        {
+          "k": "Otros",
+          "v": 3.75
+        }
+      ],
+      "spark": [
+        1174,
+        1098,
+        1113,
+        1083,
+        1050,
+        999,
+        972,
+        1044,
+        1269,
+        1080,
+        1164,
+        987
+      ]
+    },
+    {
+      "code": "D-04",
+      "name": "Hollenbeck",
+      "bureau": "Central",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 33.76,
+      "profileShares": {
+        "P01": 28.22,
+        "P02": 12.38,
+        "P03": 6.06,
+        "P04": 33.76,
+        "P05": 2.27,
+        "P06": 17.3
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.686,
+      "x": 636.6,
+      "y": 454.0,
+      "lat": 34.045,
+      "lng": -118.229,
+      "inc12": 7564,
+      "prev": 735,
+      "forecast": 587,
+      "deltaPct": -20.1,
+      "mae": 1.168,
+      "night": 36.6,
+      "weekend": 28.9,
+      "weapon": 36.1,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 46.38
+        },
+        {
+          "k": "Personas",
+          "v": 33.56
+        },
+        {
+          "k": "Vandalismo",
+          "v": 10.39
+        },
+        {
+          "k": "Fraude",
+          "v": 6.8
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.26
+        },
+        {
+          "k": "Otros",
+          "v": 0.61
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 47.71
+        },
+        {
+          "k": "Residencia",
+          "v": 31.79
+        },
+        {
+          "k": "Comercio",
+          "v": 11.4
+        },
+        {
+          "k": "Vehículo",
+          "v": 1.93
+        },
+        {
+          "k": "Espacio público",
+          "v": 3.45
+        },
+        {
+          "k": "Otros",
+          "v": 3.72
+        }
+      ],
+      "spark": [
+        740,
+        714,
+        608,
+        724,
+        691,
+        668,
+        651,
+        704,
+        722,
+        736,
+        735,
+        611
+      ]
+    },
+    {
+      "code": "D-05",
+      "name": "Harbor",
+      "bureau": "South",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 34.36,
+      "profileShares": {
+        "P01": 27.03,
+        "P02": 12.21,
+        "P03": 7.49,
+        "P04": 34.36,
+        "P05": 2.33,
+        "P06": 16.58
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.64,
+      "x": 557.3,
+      "y": 923.2,
+      "lat": 33.735,
+      "lng": -118.292,
+      "inc12": 8158,
+      "prev": 724,
+      "forecast": 631,
+      "deltaPct": -12.9,
+      "mae": 1.326,
+      "night": 36.9,
+      "weekend": 28.5,
+      "weapon": 34.6,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 46.35
+        },
+        {
+          "k": "Personas",
+          "v": 34.08
+        },
+        {
+          "k": "Vandalismo",
+          "v": 10.21
+        },
+        {
+          "k": "Fraude",
+          "v": 6.24
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.31
+        },
+        {
+          "k": "Otros",
+          "v": 0.82
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 39.66
+        },
+        {
+          "k": "Residencia",
+          "v": 35.81
+        },
+        {
+          "k": "Comercio",
+          "v": 11.54
+        },
+        {
+          "k": "Vehículo",
+          "v": 5.46
+        },
+        {
+          "k": "Espacio público",
+          "v": 2.63
+        },
+        {
+          "k": "Otros",
+          "v": 4.91
+        }
+      ],
+      "spark": [
+        824,
+        771,
+        687,
+        749,
+        691,
+        734,
+        766,
+        857,
+        779,
+        770,
+        724,
+        630
+      ]
+    },
+    {
+      "code": "D-06",
+      "name": "Hollywood",
+      "bureau": "West",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 28.02,
+      "profileShares": {
+        "P01": 22.84,
+        "P02": 21.48,
+        "P03": 8.11,
+        "P04": 28.02,
+        "P05": 3.23,
+        "P06": 16.32
+      },
+      "priorityProfile": "P01",
+      "priorityScore": 0.657,
+      "x": 504.5,
+      "y": 376.8,
+      "lat": 34.096,
+      "lng": -118.334,
+      "inc12": 10206,
+      "prev": 936,
+      "forecast": 786,
+      "deltaPct": -16.0,
+      "mae": 1.709,
+      "night": 38.8,
+      "weekend": 30.4,
+      "weapon": 40.0,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 51.92
+        },
+        {
+          "k": "Personas",
+          "v": 27.75
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.37
+        },
+        {
+          "k": "Fraude",
+          "v": 6.8
+        },
+        {
+          "k": "Sexuales",
+          "v": 3.19
+        },
+        {
+          "k": "Otros",
+          "v": 0.97
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 41.2
+        },
+        {
+          "k": "Residencia",
+          "v": 33.95
+        },
+        {
+          "k": "Comercio",
+          "v": 15.27
+        },
+        {
+          "k": "Vehículo",
+          "v": 2.59
+        },
+        {
+          "k": "Espacio público",
+          "v": 0.99
+        },
+        {
+          "k": "Otros",
+          "v": 5.99
+        }
+      ],
+      "spark": [
+        893,
+        938,
+        927,
+        930,
+        924,
+        935,
+        973,
+        911,
+        969,
+        961,
+        936,
+        802
+      ]
+    },
+    {
+      "code": "D-07",
+      "name": "Wilshire",
+      "bureau": "West",
+      "profile": "P01",
+      "profileName": "Delitos Vehiculares y Movilidad",
+      "profileShare": 24.0,
+      "profileShares": {
+        "P01": 24.0,
+        "P02": 23.03,
+        "P03": 10.65,
+        "P04": 22.67,
+        "P05": 2.87,
+        "P06": 16.78
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.731,
+      "x": 503.2,
+      "y": 452.5,
+      "lat": 34.046,
+      "lng": -118.335,
+      "inc12": 10418,
+      "prev": 1002,
+      "forecast": 785,
+      "deltaPct": -21.6,
+      "mae": 1.398,
+      "night": 32.1,
+      "weekend": 28.5,
+      "weapon": 27.1,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 56.78
+        },
+        {
+          "k": "Personas",
+          "v": 22.31
+        },
+        {
+          "k": "Vandalismo",
+          "v": 8.92
+        },
+        {
+          "k": "Fraude",
+          "v": 7.6
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.83
+        },
+        {
+          "k": "Otros",
+          "v": 1.55
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 35.23
+        },
+        {
+          "k": "Residencia",
+          "v": 32.97
+        },
+        {
+          "k": "Comercio",
+          "v": 19.55
+        },
+        {
+          "k": "Vehículo",
+          "v": 2.33
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.96
+        },
+        {
+          "k": "Otros",
+          "v": 7.95
+        }
+      ],
+      "spark": [
+        1059,
+        1017,
+        899,
+        953,
+        946,
+        884,
+        921,
+        998,
+        1007,
+        918,
+        1002,
+        873
+      ]
+    },
+    {
+      "code": "D-08",
+      "name": "West LA",
+      "bureau": "West",
+      "profile": "P01",
+      "profileName": "Delitos Vehiculares y Movilidad",
+      "profileShare": 27.13,
+      "profileShares": {
+        "P01": 27.13,
+        "P02": 20.52,
+        "P03": 13.14,
+        "P04": 16.88,
+        "P05": 2.85,
+        "P06": 19.49
+      },
+      "priorityProfile": "P02",
+      "priorityScore": 0.673,
+      "x": 362.3,
+      "y": 463.1,
+      "lat": 34.039,
+      "lng": -118.447,
+      "inc12": 9484,
+      "prev": 895,
+      "forecast": 802,
+      "deltaPct": -10.4,
+      "mae": 1.3,
+      "night": 31.4,
+      "weekend": 27.5,
+      "weapon": 23.8,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 60.07
+        },
+        {
+          "k": "Personas",
+          "v": 16.68
+        },
+        {
+          "k": "Vandalismo",
+          "v": 8.93
+        },
+        {
+          "k": "Fraude",
+          "v": 10.33
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.82
+        },
+        {
+          "k": "Otros",
+          "v": 1.17
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 31.72
+        },
+        {
+          "k": "Residencia",
+          "v": 41.15
+        },
+        {
+          "k": "Comercio",
+          "v": 18.51
+        },
+        {
+          "k": "Vehículo",
+          "v": 2.18
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.6
+        },
+        {
+          "k": "Otros",
+          "v": 4.84
+        }
+      ],
+      "spark": [
+        919,
+        935,
+        893,
+        850,
+        788,
+        858,
+        877,
+        892,
+        898,
+        786,
+        895,
+        812
+      ]
+    },
+    {
+      "code": "D-09",
+      "name": "Van Nuys",
+      "bureau": "Valley",
+      "profile": "P01",
+      "profileName": "Delitos Vehiculares y Movilidad",
+      "profileShare": 27.39,
+      "profileShares": {
+        "P01": 27.39,
+        "P02": 15.73,
+        "P03": 9.66,
+        "P04": 24.91,
+        "P05": 2.86,
+        "P06": 19.44
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.646,
+      "x": 358.5,
+      "y": 246.7,
+      "lat": 34.182,
+      "lng": -118.45,
+      "inc12": 8919,
+      "prev": 759,
+      "forecast": 659,
+      "deltaPct": -13.2,
+      "mae": 1.48,
+      "night": 34.3,
+      "weekend": 27.5,
+      "weapon": 27.8,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 52.27
+        },
+        {
+          "k": "Personas",
+          "v": 24.66
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.28
+        },
+        {
+          "k": "Fraude",
+          "v": 9.97
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.84
+        },
+        {
+          "k": "Otros",
+          "v": 0.98
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 39.1
+        },
+        {
+          "k": "Residencia",
+          "v": 34.89
+        },
+        {
+          "k": "Comercio",
+          "v": 15.67
+        },
+        {
+          "k": "Vehículo",
+          "v": 3.1
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.73
+        },
+        {
+          "k": "Otros",
+          "v": 5.51
+        }
+      ],
+      "spark": [
+        856,
+        812,
+        832,
+        859,
+        831,
+        840,
+        877,
+        823,
+        803,
+        780,
+        759,
+        703
+      ]
+    },
+    {
+      "code": "D-10",
+      "name": "North Hollywood",
+      "bureau": "Valley",
+      "profile": "P01",
+      "profileName": "Delitos Vehiculares y Movilidad",
+      "profileShare": 28.02,
+      "profileShares": {
+        "P01": 28.02,
+        "P02": 15.91,
+        "P03": 10.28,
+        "P04": 24.76,
+        "P05": 2.83,
+        "P06": 18.2
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.635,
+      "x": 450.4,
+      "y": 261.8,
+      "lat": 34.172,
+      "lng": -118.377,
+      "inc12": 10165,
+      "prev": 980,
+      "forecast": 773,
+      "deltaPct": -21.2,
+      "mae": 1.392,
+      "night": 36.0,
+      "weekend": 27.4,
+      "weapon": 27.3,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 53.61
+        },
+        {
+          "k": "Personas",
+          "v": 24.49
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.45
+        },
+        {
+          "k": "Fraude",
+          "v": 8.54
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.8
+        },
+        {
+          "k": "Otros",
+          "v": 1.11
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 36.84
+        },
+        {
+          "k": "Residencia",
+          "v": 35.93
+        },
+        {
+          "k": "Comercio",
+          "v": 14.26
+        },
+        {
+          "k": "Vehículo",
+          "v": 4.8
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.73
+        },
+        {
+          "k": "Otros",
+          "v": 6.44
+        }
+      ],
+      "spark": [
+        945,
+        909,
+        876,
+        961,
+        926,
+        910,
+        878,
+        987,
+        900,
+        921,
+        980,
+        917
+      ]
+    },
+    {
+      "code": "D-11",
+      "name": "Foothill",
+      "bureau": "Valley",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 31.43,
+      "profileShares": {
+        "P01": 27.03,
+        "P02": 12.18,
+        "P03": 7.59,
+        "P04": 31.43,
+        "P05": 2.67,
+        "P06": 19.09
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.678,
+      "x": 413.9,
+      "y": 128.6,
+      "lat": 34.26,
+      "lng": -118.406,
+      "inc12": 6358,
+      "prev": 584,
+      "forecast": 470,
+      "deltaPct": -19.5,
+      "mae": 1.08,
+      "night": 34.6,
+      "weekend": 28.2,
+      "weapon": 33.3,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 46.4
+        },
+        {
+          "k": "Personas",
+          "v": 31.16
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.19
+        },
+        {
+          "k": "Fraude",
+          "v": 9.74
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.65
+        },
+        {
+          "k": "Otros",
+          "v": 0.87
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 38.77
+        },
+        {
+          "k": "Residencia",
+          "v": 37.58
+        },
+        {
+          "k": "Comercio",
+          "v": 10.59
+        },
+        {
+          "k": "Vehículo",
+          "v": 5.45
+        },
+        {
+          "k": "Espacio público",
+          "v": 3.01
+        },
+        {
+          "k": "Otros",
+          "v": 4.6
+        }
+      ],
+      "spark": [
+        677,
+        601,
+        583,
+        583,
+        566,
+        544,
+        605,
+        607,
+        594,
+        549,
+        584,
+        542
+      ]
+    },
+    {
+      "code": "D-12",
+      "name": "Devonshire",
+      "bureau": "Valley",
+      "profile": "P01",
+      "profileName": "Delitos Vehiculares y Movilidad",
+      "profileShare": 26.69,
+      "profileShares": {
+        "P01": 26.69,
+        "P02": 16.67,
+        "P03": 11.47,
+        "P04": 24.22,
+        "P05": 2.67,
+        "P06": 18.27
+      },
+      "priorityProfile": "P01",
+      "priorityScore": 0.755,
+      "x": 264.2,
+      "y": 158.9,
+      "lat": 34.24,
+      "lng": -118.525,
+      "inc12": 8615,
+      "prev": 787,
+      "forecast": 608,
+      "deltaPct": -22.7,
+      "mae": 1.119,
+      "night": 32.9,
+      "weekend": 27.3,
+      "weapon": 27.2,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 54.29
+        },
+        {
+          "k": "Personas",
+          "v": 23.98
+        },
+        {
+          "k": "Vandalismo",
+          "v": 7.08
+        },
+        {
+          "k": "Fraude",
+          "v": 11.02
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.64
+        },
+        {
+          "k": "Otros",
+          "v": 1.0
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 34.9
+        },
+        {
+          "k": "Residencia",
+          "v": 38.52
+        },
+        {
+          "k": "Comercio",
+          "v": 16.53
+        },
+        {
+          "k": "Vehículo",
+          "v": 1.46
+        },
+        {
+          "k": "Espacio público",
+          "v": 2.35
+        },
+        {
+          "k": "Otros",
+          "v": 6.24
+        }
+      ],
+      "spark": [
+        827,
+        826,
+        778,
+        819,
+        822,
+        805,
+        772,
+        789,
+        784,
+        780,
+        787,
+        653
+      ]
+    },
+    {
+      "code": "D-13",
+      "name": "Topanga",
+      "bureau": "Valley",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 25.64,
+      "profileShares": {
+        "P01": 22.57,
+        "P02": 20.09,
+        "P03": 10.37,
+        "P04": 25.64,
+        "P05": 2.93,
+        "P06": 18.4
+      },
+      "priorityProfile": "P02",
+      "priorityScore": 0.728,
+      "x": 157.3,
+      "y": 174.0,
+      "lat": 34.23,
+      "lng": -118.61,
+      "inc12": 8593,
+      "prev": 813,
+      "forecast": 728,
+      "deltaPct": -10.4,
+      "mae": 1.577,
+      "night": 32.4,
+      "weekend": 27.8,
+      "weapon": 28.3,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 52.52
+        },
+        {
+          "k": "Personas",
+          "v": 25.39
+        },
+        {
+          "k": "Vandalismo",
+          "v": 7.31
+        },
+        {
+          "k": "Fraude",
+          "v": 10.91
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.9
+        },
+        {
+          "k": "Otros",
+          "v": 0.97
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 32.3
+        },
+        {
+          "k": "Residencia",
+          "v": 40.12
+        },
+        {
+          "k": "Comercio",
+          "v": 19.64
+        },
+        {
+          "k": "Vehículo",
+          "v": 2.63
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.99
+        },
+        {
+          "k": "Otros",
+          "v": 3.32
+        }
+      ],
+      "spark": [
+        798,
+        707,
+        762,
+        809,
+        764,
+        802,
+        755,
+        772,
+        828,
+        801,
+        813,
+        780
+      ]
+    },
+    {
+      "code": "D-14",
+      "name": "West Valley",
+      "bureau": "Valley",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 27.1,
+      "profileShares": {
+        "P01": 26.43,
+        "P02": 13.21,
+        "P03": 11.52,
+        "P04": 27.1,
+        "P05": 3.05,
+        "P06": 18.7
+      },
+      "priorityProfile": "P03",
+      "priorityScore": 0.635,
+      "x": 222.7,
+      "y": 228.5,
+      "lat": 34.194,
+      "lng": -118.558,
+      "inc12": 8928,
+      "prev": 786,
+      "forecast": 652,
+      "deltaPct": -17.0,
+      "mae": 1.394,
+      "night": 35.7,
+      "weekend": 27.2,
+      "weapon": 30.7,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 50.62
+        },
+        {
+          "k": "Personas",
+          "v": 26.81
+        },
+        {
+          "k": "Vandalismo",
+          "v": 8.44
+        },
+        {
+          "k": "Fraude",
+          "v": 10.06
+        },
+        {
+          "k": "Sexuales",
+          "v": 3.02
+        },
+        {
+          "k": "Otros",
+          "v": 1.05
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 35.58
+        },
+        {
+          "k": "Residencia",
+          "v": 41.09
+        },
+        {
+          "k": "Comercio",
+          "v": 12.39
+        },
+        {
+          "k": "Vehículo",
+          "v": 4.34
+        },
+        {
+          "k": "Espacio público",
+          "v": 3.04
+        },
+        {
+          "k": "Otros",
+          "v": 3.55
+        }
+      ],
+      "spark": [
+        920,
+        857,
+        753,
+        828,
+        816,
+        831,
+        783,
+        894,
+        834,
+        800,
+        786,
+        746
+      ]
+    },
+    {
+      "code": "D-15",
+      "name": "Mission",
+      "bureau": "Valley",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 31.86,
+      "profileShares": {
+        "P01": 28.37,
+        "P02": 13.05,
+        "P03": 5.64,
+        "P04": 31.86,
+        "P05": 3.05,
+        "P06": 18.03
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.673,
+      "x": 333.4,
+      "y": 113.5,
+      "lat": 34.27,
+      "lng": -118.47,
+      "inc12": 8027,
+      "prev": 778,
+      "forecast": 613,
+      "deltaPct": -21.3,
+      "mae": 1.163,
+      "night": 35.4,
+      "weekend": 28.9,
+      "weapon": 33.0,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 46.65
+        },
+        {
+          "k": "Personas",
+          "v": 31.58
+        },
+        {
+          "k": "Vandalismo",
+          "v": 8.44
+        },
+        {
+          "k": "Fraude",
+          "v": 9.43
+        },
+        {
+          "k": "Sexuales",
+          "v": 3.03
+        },
+        {
+          "k": "Otros",
+          "v": 0.86
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 43.73
+        },
+        {
+          "k": "Residencia",
+          "v": 37.99
+        },
+        {
+          "k": "Comercio",
+          "v": 9.19
+        },
+        {
+          "k": "Vehículo",
+          "v": 2.58
+        },
+        {
+          "k": "Espacio público",
+          "v": 2.59
+        },
+        {
+          "k": "Otros",
+          "v": 3.91
+        }
+      ],
+      "spark": [
+        784,
+        787,
+        750,
+        669,
+        642,
+        665,
+        659,
+        811,
+        809,
+        712,
+        778,
+        745
+      ]
+    },
+    {
+      "code": "D-16",
+      "name": "Olympic",
+      "bureau": "West",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 30.5,
+      "profileShares": {
+        "P01": 25.91,
+        "P02": 16.06,
+        "P03": 8.56,
+        "P04": 30.5,
+        "P05": 2.65,
+        "P06": 16.33
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.653,
+      "x": 558.6,
+      "y": 446.5,
+      "lat": 34.05,
+      "lng": -118.291,
+      "inc12": 10440,
+      "prev": 947,
+      "forecast": 778,
+      "deltaPct": -17.8,
+      "mae": 1.374,
+      "night": 37.1,
+      "weekend": 28.1,
+      "weapon": 36.5,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 50.16
+        },
+        {
+          "k": "Personas",
+          "v": 30.28
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.32
+        },
+        {
+          "k": "Fraude",
+          "v": 6.89
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.63
+        },
+        {
+          "k": "Otros",
+          "v": 0.72
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 40.07
+        },
+        {
+          "k": "Residencia",
+          "v": 36.21
+        },
+        {
+          "k": "Comercio",
+          "v": 11.64
+        },
+        {
+          "k": "Vehículo",
+          "v": 6.68
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.34
+        },
+        {
+          "k": "Otros",
+          "v": 4.07
+        }
+      ],
+      "spark": [
+        981,
+        1014,
+        916,
+        981,
+        1106,
+        935,
+        908,
+        957,
+        1029,
+        860,
+        947,
+        787
+      ]
+    },
+    {
+      "code": "D-17",
+      "name": "Newton",
+      "bureau": "Central",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 34.1,
+      "profileShares": {
+        "P01": 27.96,
+        "P02": 13.99,
+        "P03": 6.08,
+        "P04": 34.1,
+        "P05": 2.18,
+        "P06": 15.68
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.665,
+      "x": 606.4,
+      "y": 504.0,
+      "lat": 34.012,
+      "lng": -118.253,
+      "inc12": 10878,
+      "prev": 1088,
+      "forecast": 863,
+      "deltaPct": -20.7,
+      "mae": 1.66,
+      "night": 36.3,
+      "weekend": 30.0,
+      "weapon": 41.8,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 47.82
+        },
+        {
+          "k": "Personas",
+          "v": 33.95
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.16
+        },
+        {
+          "k": "Fraude",
+          "v": 6.45
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.17
+        },
+        {
+          "k": "Otros",
+          "v": 0.45
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 48.72
+        },
+        {
+          "k": "Residencia",
+          "v": 23.14
+        },
+        {
+          "k": "Comercio",
+          "v": 11.09
+        },
+        {
+          "k": "Vehículo",
+          "v": 7.0
+        },
+        {
+          "k": "Espacio público",
+          "v": 2.23
+        },
+        {
+          "k": "Otros",
+          "v": 7.81
+        }
+      ],
+      "spark": [
+        947,
+        1007,
+        955,
+        948,
+        898,
+        982,
+        928,
+        1085,
+        1072,
+        1042,
+        1088,
+        873
+      ]
+    },
+    {
+      "code": "D-18",
+      "name": "Pacific",
+      "bureau": "West",
+      "profile": "P01",
+      "profileName": "Delitos Vehiculares y Movilidad",
+      "profileShare": 32.39,
+      "profileShares": {
+        "P01": 32.39,
+        "P02": 18.5,
+        "P03": 10.73,
+        "P04": 19.15,
+        "P05": 2.27,
+        "P06": 16.96
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.715,
+      "x": 385.0,
+      "y": 513.8,
+      "lat": 34.0055,
+      "lng": -118.429,
+      "inc12": 12302,
+      "prev": 1118,
+      "forecast": 1013,
+      "deltaPct": -9.4,
+      "mae": 1.519,
+      "night": 34.7,
+      "weekend": 28.4,
+      "weapon": 27.6,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 60.95
+        },
+        {
+          "k": "Personas",
+          "v": 18.94
+        },
+        {
+          "k": "Vandalismo",
+          "v": 8.18
+        },
+        {
+          "k": "Fraude",
+          "v": 8.6
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.25
+        },
+        {
+          "k": "Otros",
+          "v": 1.09
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 35.55
+        },
+        {
+          "k": "Residencia",
+          "v": 33.41
+        },
+        {
+          "k": "Comercio",
+          "v": 12.1
+        },
+        {
+          "k": "Vehículo",
+          "v": 1.59
+        },
+        {
+          "k": "Espacio público",
+          "v": 3.57
+        },
+        {
+          "k": "Otros",
+          "v": 13.79
+        }
+      ],
+      "spark": [
+        1076,
+        1109,
+        1047,
+        1124,
+        1163,
+        1104,
+        1155,
+        1216,
+        1152,
+        1172,
+        1118,
+        942
+      ]
+    },
+    {
+      "code": "D-19",
+      "name": "Northeast",
+      "bureau": "Central",
+      "profile": "P01",
+      "profileName": "Delitos Vehiculares y Movilidad",
+      "profileShare": 31.88,
+      "profileShares": {
+        "P01": 31.88,
+        "P02": 15.49,
+        "P03": 8.57,
+        "P04": 23.89,
+        "P05": 2.31,
+        "P06": 17.86
+      },
+      "priorityProfile": "P01",
+      "priorityScore": 0.744,
+      "x": 620.2,
+      "y": 392.0,
+      "lat": 34.086,
+      "lng": -118.242,
+      "inc12": 8722,
+      "prev": 816,
+      "forecast": 653,
+      "deltaPct": -19.9,
+      "mae": 1.222,
+      "night": 34.4,
+      "weekend": 28.3,
+      "weapon": 27.0,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 55.5
+        },
+        {
+          "k": "Personas",
+          "v": 23.7
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.94
+        },
+        {
+          "k": "Fraude",
+          "v": 7.78
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.3
+        },
+        {
+          "k": "Otros",
+          "v": 0.79
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 42.06
+        },
+        {
+          "k": "Residencia",
+          "v": 31.73
+        },
+        {
+          "k": "Comercio",
+          "v": 13.6
+        },
+        {
+          "k": "Vehículo",
+          "v": 2.75
+        },
+        {
+          "k": "Espacio público",
+          "v": 5.17
+        },
+        {
+          "k": "Otros",
+          "v": 4.69
+        }
+      ],
+      "spark": [
+        839,
+        896,
+        725,
+        824,
+        812,
+        748,
+        741,
+        784,
+        865,
+        819,
+        816,
+        692
+      ]
+    },
+    {
+      "code": "D-20",
+      "name": "77th Street",
+      "bureau": "South",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 40.38,
+      "profileShares": {
+        "P01": 21.93,
+        "P02": 13.88,
+        "P03": 4.29,
+        "P04": 40.38,
+        "P05": 2.69,
+        "P06": 16.83
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.721,
+      "x": 574.9,
+      "y": 567.5,
+      "lat": 33.97,
+      "lng": -118.278,
+      "inc12": 12625,
+      "prev": 1120,
+      "forecast": 994,
+      "deltaPct": -11.2,
+      "mae": 1.893,
+      "night": 36.5,
+      "weekend": 29.1,
+      "weapon": 48.9,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 39.79
+        },
+        {
+          "k": "Personas",
+          "v": 40.07
+        },
+        {
+          "k": "Vandalismo",
+          "v": 8.77
+        },
+        {
+          "k": "Fraude",
+          "v": 7.93
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.67
+        },
+        {
+          "k": "Otros",
+          "v": 0.78
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 46.5
+        },
+        {
+          "k": "Residencia",
+          "v": 38.23
+        },
+        {
+          "k": "Comercio",
+          "v": 6.74
+        },
+        {
+          "k": "Vehículo",
+          "v": 4.09
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.46
+        },
+        {
+          "k": "Otros",
+          "v": 2.97
+        }
+      ],
+      "spark": [
+        1222,
+        1109,
+        1135,
+        1116,
+        1166,
+        1219,
+        1156,
+        1216,
+        1219,
+        1150,
+        1120,
+        1019
+      ]
+    },
+    {
+      "code": "D-21",
+      "name": "Southeast",
+      "bureau": "South",
+      "profile": "P04",
+      "profileName": "Delitos Contra la Vida y la Integridad",
+      "profileShare": 40.31,
+      "profileShares": {
+        "P01": 22.89,
+        "P02": 12.78,
+        "P03": 3.77,
+        "P04": 40.31,
+        "P05": 2.34,
+        "P06": 17.92
+      },
+      "priorityProfile": "P04",
+      "priorityScore": 0.669,
+      "x": 577.5,
+      "y": 616.0,
+      "lat": 33.938,
+      "lng": -118.276,
+      "inc12": 10284,
+      "prev": 934,
+      "forecast": 789,
+      "deltaPct": -15.5,
+      "mae": 1.825,
+      "night": 37.2,
+      "weekend": 29.0,
+      "weapon": 48.0,
+      "mix": [
+        {
+          "k": "Patrimonio",
+          "v": 39.18
+        },
+        {
+          "k": "Personas",
+          "v": 40.05
+        },
+        {
+          "k": "Vandalismo",
+          "v": 9.28
+        },
+        {
+          "k": "Fraude",
+          "v": 8.52
+        },
+        {
+          "k": "Sexuales",
+          "v": 2.32
+        },
+        {
+          "k": "Otros",
+          "v": 0.65
+        }
+      ],
+      "premises": [
+        {
+          "k": "Vía pública",
+          "v": 44.38
+        },
+        {
+          "k": "Residencia",
+          "v": 38.88
+        },
+        {
+          "k": "Comercio",
+          "v": 6.07
+        },
+        {
+          "k": "Vehículo",
+          "v": 6.5
+        },
+        {
+          "k": "Espacio público",
+          "v": 1.39
+        },
+        {
+          "k": "Otros",
+          "v": 2.79
+        }
+      ],
+      "spark": [
+        1046,
+        1047,
+        935,
+        935,
+        889,
+        950,
+        927,
+        997,
+        925,
+        892,
+        934,
+        853
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "code": "P01",
+      "name": "Delitos Vehiculares y Movilidad",
+      "description": "Sustracción de vehículos, autopartes, accesorios, objetos dentro de vehículos, bicicletas y movilidad personal; incluye infracciones de movilidad cuando el registro lo permite.",
+      "principalZones": 402,
+      "priorityZones": 298,
+      "incidents": 221643,
+      "sharePct": 26.34,
+      "nightPct": 40.2,
+      "weaponPct": 1.8,
+      "mae": 1.906,
+      "priorityAvg": 0.445
+    },
+    {
+      "code": "P02",
+      "name": "Robo y Hurto Patrimonial",
+      "description": "Robo y hurto de bienes, incluidos robos a personas, hurto comercial, hurto patrimonial general y extorsión.",
+      "principalZones": 40,
+      "priorityZones": 77,
+      "incidents": 138433,
+      "sharePct": 16.45,
+      "nightPct": 27.1,
+      "weaponPct": 27.6,
+      "mae": 1.74,
+      "priorityAvg": 0.357
+    },
+    {
+      "code": "P03",
+      "name": "Robos Residenciales e Intrusión",
+      "description": "Burglary, allanamiento, intrusión y merodeo en inmuebles. No incluye robo de objetos dentro de vehículos, que se asigna a P01.",
+      "principalZones": 12,
+      "priorityZones": 104,
+      "incidents": 67671,
+      "sharePct": 8.04,
+      "nightPct": 40.0,
+      "weaponPct": 11.2,
+      "mae": 1.085,
+      "priorityAvg": 0.353
+    },
+    {
+      "code": "P04",
+      "name": "Delitos Contra la Vida y la Integridad",
+      "description": "Homicidios, agresiones físicas, lesiones, amenazas, violencia interpersonal, violencia doméstica explícita, violencia infantil, armas y delitos contra la libertad.",
+      "principalZones": 514,
+      "priorityZones": 451,
+      "incidents": 245419,
+      "sharePct": 29.17,
+      "nightPct": 36.8,
+      "weaponPct": 91.6,
+      "mae": 2.129,
+      "priorityAvg": 0.465
+    },
+    {
+      "code": "P05",
+      "name": "Delitos Sexuales",
+      "description": "Delitos sexuales, explotación sexual, exhibición/acoso sexual y incumplimiento de registro sexual.",
+      "principalZones": 0,
+      "priorityZones": 22,
+      "incidents": 22527,
+      "sharePct": 2.68,
+      "nightPct": 36.7,
+      "weaponPct": 49.3,
+      "mae": 0.456,
+      "priorityAvg": 0.324
+    },
+    {
+      "code": "P06",
+      "name": "Fraude, Vandalismo y Daños",
+      "description": "Fraude, identidad, falsificación, malversación, vandalismo, daño a propiedad, incendio intencional y daño ambiental.",
+      "principalZones": 32,
+      "priorityZones": 48,
+      "incidents": 145729,
+      "sharePct": 17.32,
+      "nightPct": 30.9,
+      "weaponPct": 6.0,
+      "mae": 1.318,
+      "priorityAvg": 0.371
+    }
+  ],
+  "profileCatalog": [
+    {
+      "code": "P01",
+      "name": "Delitos Vehiculares y Movilidad",
+      "description": "Sustracción de vehículos, autopartes, accesorios, objetos dentro de vehículos, bicicletas y movilidad personal; incluye infracciones de movilidad cuando el registro lo permite.",
+      "submodalities": "VEHICULO_ROBADO; ACCESORIOS_VEHICULO; BICICLETA_MOVILIDAD; CONDUCCION",
+      "severity": 0.7
+    },
+    {
+      "code": "P02",
+      "name": "Robo y Hurto Patrimonial",
+      "description": "Robo y hurto de bienes, incluidos robos a personas, hurto comercial, hurto patrimonial general y extorsión.",
+      "submodalities": "ROBO_PERSONAS; HURTO_COMERCIAL; HURTO_PATRIMONIAL; EXTORSION",
+      "severity": 0.6
+    },
+    {
+      "code": "P03",
+      "name": "Robos Residenciales e Intrusión",
+      "description": "Burglary, allanamiento, intrusión y merodeo en inmuebles. No incluye robo de objetos dentro de vehículos, que se asigna a P01.",
+      "submodalities": "BURGLARY; INTRUSION",
+      "severity": 0.8
+    },
+    {
+      "code": "P04",
+      "name": "Delitos Contra la Vida y la Integridad",
+      "description": "Homicidios, agresiones físicas, lesiones, amenazas, violencia interpersonal, violencia doméstica explícita, violencia infantil, armas y delitos contra la libertad.",
+      "submodalities": "HOMICIDIO; VIOLENCIA_DOMESTICA; VIOLENCIA_INFANTIL; VIOLENCIA_INTERPERSONAL; ARMAS; ORDEN_PROTECCION; TRATA_PERSONAS",
+      "severity": 1.0
+    },
+    {
+      "code": "P05",
+      "name": "Delitos Sexuales",
+      "description": "Delitos sexuales, explotación sexual, exhibición/acoso sexual y incumplimiento de registro sexual.",
+      "submodalities": "AGRESION_SEXUAL; EXPLOTACION_SEXUAL; EXHIBICION_O_ACOSO; REGISTRO_SEXUAL",
+      "severity": 1.0
+    },
+    {
+      "code": "P06",
+      "name": "Fraude, Vandalismo y Daños",
+      "description": "Fraude, identidad, falsificación, malversación, vandalismo, daño a propiedad, incendio intencional y daño ambiental.",
+      "submodalities": "FRAUDE_IDENTIDAD; VANDALISMO_DANOS",
+      "severity": 0.5
+    }
+  ],
+  "models": [
+    {
+      "name": "MLP",
+      "mae": 1.4392,
+      "rmse": 2.8949,
+      "r2": 0.5735,
+      "isBest": true
+    },
+    {
+      "name": "HGB",
+      "mae": 1.4496,
+      "rmse": 2.3916,
+      "r2": 0.7089,
+      "isBest": false
+    },
+    {
+      "name": "RF",
+      "mae": 1.4722,
+      "rmse": 2.3718,
+      "r2": 0.7137,
+      "isBest": false
+    },
+    {
+      "name": "Persistencia",
+      "mae": 1.773,
+      "rmse": 2.8862,
+      "r2": 0.5761,
+      "isBest": false
+    },
+    {
+      "name": "Persistencia",
+      "mae": 1.773,
+      "rmse": 2.8862,
+      "r2": 0.5761,
+      "isBest": false
+    }
+  ],
+  "typifications": [
+    {
+      "code": "VEHICLE - STOLEN",
+      "percentage": 10.72
+    },
+    {
+      "code": "BATTERY - SIMPLE ASSAULT",
+      "percentage": 7.97
+    },
+    {
+      "code": "THEFT OF IDENTITY",
+      "percentage": 6.27
+    },
+    {
+      "code": "BURGLARY FROM VEHICLE",
+      "percentage": 6.17
+    },
+    {
+      "code": "BURGLARY",
+      "percentage": 6.09
+    },
+    {
+      "code": "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)",
+      "percentage": 6.08
+    },
+    {
+      "code": "ASSAULT WITH DEADLY WEAPON, AGGRAVATED ASSAULT",
+      "percentage": 5.73
+    },
+    {
+      "code": "THEFT PLAIN - PETTY ($950 & UNDER)",
+      "percentage": 5.09
+    }
+  ],
+  "scope": [
+    {
+      "concept": "Filas crudas",
+      "value": "852.950"
+    },
+    {
+      "concept": "Incidentes utilizables",
+      "value": "848.979"
+    },
+    {
+      "concept": "Zonas en el panel",
+      "value": "1.102"
+    },
+    {
+      "concept": "Zonas con perfil principal",
+      "value": "1.000"
+    },
+    {
+      "concept": "Tipificaciones",
+      "value": "138"
+    },
+    {
+      "concept": "Con coordenadas válidas",
+      "value": "846.722"
+    },
+    {
+      "concept": "Denuncia el mismo día",
+      "value": "418.424"
+    },
+    {
+      "concept": "Demoras negativas",
+      "value": "0"
+    },
+    {
+      "concept": "Cobertura del perfilamiento",
+      "value": "99,11 %"
+    }
+  ],
+  "globalMix": {
+    "Patrimonio": 50.4,
+    "Personas": 28.93,
+    "Vandalismo": 9.04,
+    "Fraude": 8.09,
+    "Sexuales": 2.65,
+    "Otros": 0.89
+  },
+  "premiseLabels": {
+    "VIA_PUBLICA": "Vía pública",
+    "RESIDENCIA": "Residencia",
+    "COMERCIO": "Comercio",
+    "VEHICULO": "Vehículo",
+    "ESPACIO_PUBLICO": "Espacio público",
+    "OTROS": "Otros"
+  },
+  "modelRun": {
+    "jobId": null,
+    "datasetName": "Crime_Data_from_2020_to_Present-vip.csv",
+    "generatedAt": "2026-11-13T23:03:33.642393+00:00",
+    "rawRows": 852950,
+    "usableRows": 848979,
+    "testRows": 31416,
+    "panelRows": 213624,
+    "trainRows": 150870,
+    "validRows": 31338,
+    "profileZones": 1000,
+    "coveragePct": 99.11
+  }
+}

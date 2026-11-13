@@ -1,0 +1,109 @@
+<div class="app-layout">
+  <!-- Sticky Top Civic Header -->
+  <app-header (openDataSource)="openDataSourceModal()"></app-header>
+
+  <!-- Main Unified Scrollable Dashboard -->
+  <main class="main-content" role="main">
+    <div class="content-container">
+      <section class="first-screen" aria-label="Resumen territorial y mapa principal">
+        <div class="first-screen-sidebar">
+          <!-- Title & Global Citywide Scope -->
+          <section class="overview-header">
+            <div class="eyebrow">Perfilamiento delictivo territorial · LAPD</div>
+            <h1>Dónde y qué se denuncia en Los Ángeles</h1>
+            <p class="lead">
+              Plataforma de inteligencia policial y modelado predictivo basada en redes neuronales (MLP)
+              y seis perfiles delictivos P01–P06 sobre 21 divisiones policiales.
+            </p>
+
+            <!-- Global KPIs -->
+            <dl class="kpis-bar">
+              <div class="kpi">
+                <dt>Denuncias Totales</dt>
+                <dd>{{ formatNumber(crimeService.modelRun().usableRows) }}</dd>
+              </div>
+              <div class="kpi">
+                <dt>MAE Predictivo Global</dt>
+                <dd>{{ formatDecimal(bestMae()) }} <small>inc.</small></dd>
+              </div>
+              <div class="kpi">
+                <dt>Perfiles Delictivos</dt>
+                <dd>6 <small>P01–P06</small></dd>
+              </div>
+              <div class="kpi">
+                <dt>Zonas con Perfil</dt>
+                <dd>{{ formatNumber(crimeService.modelRun().profileZones) }} <small>de 1.102</small></dd>
+              </div>
+            </dl>
+          </section>
+
+          <!-- District analytics and ranking -->
+          <section class="inspector-section" aria-label="Espacio de trabajo operativo">
+            <div class="inspector-column">
+              <div class="inspector-card">
+                <!-- Tabs Navigation -->
+                <div class="tabs-bar" role="tablist" aria-label="Vistas analíticas">
+                  <button
+                    class="tab-btn"
+                    role="tab"
+                    id="tab-zona"
+                    type="button"
+                    [attr.aria-selected]="crimeService.currentTab() === 'zona'"
+                    (click)="setTab('zona')"
+                  >
+                    División
+                  </button>
+                  <button
+                    class="tab-btn"
+                    role="tab"
+                    id="tab-modelo"
+                    type="button"
+                    [attr.aria-selected]="crimeService.currentTab() === 'modelo'"
+                    (click)="setTab('modelo')"
+                  >
+                    Modelos ML
+                  </button>
+                  <button
+                    class="tab-btn"
+                    role="tab"
+                    id="tab-datos"
+                    type="button"
+                    [attr.aria-selected]="crimeService.currentTab() === 'datos'"
+                    (click)="setTab('datos')"
+                  >
+                    Datos & Alcance
+                  </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-pane-wrapper">
+                  @switch (crimeService.currentTab()) {
+                    @case ('zona') {
+                      <app-zone-view></app-zone-view>
+                    }
+                    @case ('modelo') {
+                      <app-model-view></app-model-view>
+                    }
+                    @case ('datos') {
+                      <app-data-view></app-data-view>
+                    }
+                  }
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="map-column">
+          <app-map-container></app-map-container>
+        </div>
+      </section>
+
+      <!-- Territorial profiles and segmentation -->
+      <app-profiles-hero></app-profiles-hero>
+    </div>
+  </main>
+</div>
+
+<!-- Data Source & Schema Modal Dialog -->
+<app-data-source-dialog #dataSourceDialog></app-data-source-dialog>
