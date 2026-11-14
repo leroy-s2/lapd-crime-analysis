@@ -22,7 +22,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render header and high-impact profiles section', () => {
+  it('should render the operational dashboard and selected-division charts', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -30,9 +30,9 @@ describe('AppComponent', () => {
       'Dónde y qué se denuncia en Los Ángeles'
     );
     expect(compiled.querySelector('.brand-name')?.textContent).toContain(
-      'Perfilamiento territorial'
+      'Consulta delictiva'
     );
-    expect(compiled.querySelector('.profiles-hero')).toBeTruthy();
+    expect(compiled.querySelector('#division-analysis')).toBeTruthy();
   });
 
   it('should switch tabs between división, modelos y datos', () => {
@@ -47,14 +47,14 @@ describe('AppComponent', () => {
     expect(service.currentTab()).toBe('datos');
   });
 
-  it('should filter divisions by profile and bureau', () => {
-    expect(service.zones().length).toBe(21);
-    service.setSelectedProfileFilter(0);
-    expect(service.filteredAndSortedDivisions().length).toBe(8);
-    expect(service.filteredAndSortedDivisions().every((d) => d.profile === 0)).toBeTrue();
-
-    service.setSelectedProfileFilter(1);
-    expect(service.filteredAndSortedDivisions().length).toBe(13);
-    expect(service.filteredAndSortedDivisions().every((d) => d.profile === 1)).toBeTrue();
+  it('should update statistics when selecting a different division', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    service.selectDivision('D-06');
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+    expect(page.querySelector('#analysis-title')?.textContent).toContain('Hollywood');
+    expect(service.selectedDivision().analytics?.topCrimes.length).toBeGreaterThan(0);
+    expect(page.querySelectorAll('app-stats-chart').length).toBeGreaterThan(5);
   });
 });

@@ -9,11 +9,11 @@
         <div class="first-screen-sidebar">
           <!-- Title & Global Citywide Scope -->
           <section class="overview-header">
-            <div class="eyebrow">Perfilamiento delictivo territorial · LAPD</div>
+            <div class="eyebrow">Consulta de denuncias · LAPD</div>
             <h1>Dónde y qué se denuncia en Los Ángeles</h1>
             <p class="lead">
-              Plataforma de inteligencia policial y modelado predictivo basada en redes neuronales (MLP)
-              y seis perfiles delictivos P01–P06 sobre 21 divisiones policiales.
+              Selecciona una división para conocer los delitos más denunciados, su evolución
+              y los lugares donde se concentran.
             </p>
 
             <!-- Global KPIs -->
@@ -23,12 +23,12 @@
                 <dd>{{ formatNumber(crimeService.modelRun().usableRows) }}</dd>
               </div>
               <div class="kpi">
-                <dt>MAE Predictivo Global</dt>
-                <dd>{{ formatDecimal(bestMae()) }} <small>inc.</small></dd>
+                <dt>Divisiones policiales</dt>
+                <dd>21 <small>en el mapa</small></dd>
               </div>
               <div class="kpi">
-                <dt>Perfiles Delictivos</dt>
-                <dd>6 <small>P01–P06</small></dd>
+                <dt>Grupos de delitos</dt>
+                <dd>6 <small>categorías</small></dd>
               </div>
               <div class="kpi">
                 <dt>Zonas con Perfil</dt>
@@ -61,7 +61,7 @@
                     [attr.aria-selected]="crimeService.currentTab() === 'modelo'"
                     (click)="setTab('modelo')"
                   >
-                    Modelos ML
+                    Precisión
                   </button>
                   <button
                     class="tab-btn"
@@ -71,7 +71,7 @@
                     [attr.aria-selected]="crimeService.currentTab() === 'datos'"
                     (click)="setTab('datos')"
                   >
-                    Datos & Alcance
+                    Fuente y alcance
                   </button>
                 </div>
 

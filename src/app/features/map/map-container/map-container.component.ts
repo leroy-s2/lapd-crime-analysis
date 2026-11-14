@@ -22,22 +22,22 @@ interface Territory {
         <div>
           <span class="lbl">Los Ángeles · Territorio LAPD</span>
           <h2>21 divisiones, un territorio</h2>
-          <p>Selecciona una división para explorar su perfil.</p>
+          <p>Selecciona una división para consultar sus denuncias.</p>
         </div>
         <div class="modes" aria-label="Color del mapa">
-          <button type="button" [attr.aria-pressed]="mode() === 'profile'" (click)="setMode('profile')">Perfiles</button>
-          <button type="button" [attr.aria-pressed]="mode() === 'forecast'" (click)="setMode('forecast')">Pronóstico</button>
+          <button type="button" [attr.aria-pressed]="mode() === 'profile'" (click)="setMode('profile')">Tipos de delito</button>
+          <button type="button" [attr.aria-pressed]="mode() === 'forecast'" (click)="setMode('forecast')">Estimación histórica</button>
         </div>
       </header>
       <div class="legend" aria-label="Leyenda de colores">
         @if (mode() === 'profile') {
           @for (p of crimeService.profiles(); track p.code) {
-            <span [title]="p.name"><i [style.background]="crimeService.profileColor(p.code)"></i>{{ p.code }} <span class="legend-name">{{ p.name }}</span></span>
+            <span [title]="p.name"><i [style.background]="crimeService.profileColor(p.code)"></i><span class="legend-name">{{ p.name }}</span></span>
           }
         } @else {
-          <span>Menos denuncias</span>
+          <span>Menos estimadas</span>
           @for (color of forecastColors; track color) { <i class="heat" [style.background]="color"></i> }
-          <span>Más denuncias</span>
+          <span>Más estimadas</span>
         }
       </div>
       @if (loading()) {
@@ -48,7 +48,7 @@ interface Territory {
         <svg class="territory-map" viewBox="0 0 720 880" aria-label="Divisiones policiales de Los Ángeles; cada división permite consultar sus datos">
           @for (item of territories(); track item.name) {
             <path [attr.d]="item.path" fill-rule="evenodd" [attr.fill]="color(item)"
-              [class.selected]="isSelected(item)" [class.filtered]="isFiltered(item)"
+              [class.selected]="isSelected(item)" 
               tabindex="0" role="button" [attr.aria-label]="label(item)" [attr.aria-pressed]="isSelected(item)"
               (click)="select(item)" (keydown.enter)="select(item)" (keydown.space)="$event.preventDefault(); select(item)">
               <title>{{ label(item) }}</title>
@@ -68,7 +68,7 @@ interface Territory {
       }
       <footer>
         <span>Límites oficiales LAPD · Encuadre fijo</span>
-        <span class="active"><i [style.background]="crimeService.profileColor(selected().profile)"></i>{{ selected().name }} · {{ selected().profile }}</span>
+        <span class="active"><i [style.background]="crimeService.profileColor(selected().profile)"></i>{{ selected().name }} · {{ selected().profileName }}</span>
       </footer>
     </section>
   `,
@@ -88,7 +88,7 @@ interface Territory {
     .heat { width: 22px; }
     .territory-map { display: block; width: 100%; height: auto; max-height: 1050px; overflow: visible; }
     path { stroke: var(--bg); stroke-width: 1.6; stroke-linejoin: round; cursor: pointer; transition: fill .15s, filter .15s; }
-    path.filtered { fill: #cbd5e1; }
+
     path:hover, path:focus-visible { filter: brightness(1.12); stroke: #0f172a; stroke-width: 2.5; outline: none; }
     path.selected { stroke: #0f172a; stroke-width: 3; }
     .label-leader { stroke: #64748b; stroke-width: .8; pointer-events: none; }
@@ -97,7 +97,7 @@ interface Territory {
     footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 10px; color: var(--muted); padding: 12px 0 20px; }
     .active { display: inline-flex; align-items: center; gap: 6px; color: var(--fg); font-weight: 600; }
     .status { min-height: 400px; display: flex; align-items: center; justify-content: center; gap: 12px; color: var(--muted); }
-    @media(max-width: 600px) { header { flex-direction: column; } .territory { padding-top: 8px; } .legend-name { display: none; } h2 { font-size: 20px; } }
+    @media(max-width: 600px) { header { flex-direction: column; } .territory { padding-top: 8px; } .legend-name { max-width: 145px; font-size: 9px; } h2 { font-size: 20px; } }
   `],
 })
 export class MapContainerComponent implements OnInit {
@@ -169,13 +169,13 @@ export class MapContainerComponent implements OnInit {
   }
   label(item: Territory): string {
     const z = this.zone(item);
-    return z ? `${z.name} · ${z.profile} ${z.profileName} · ${z.forecast.toLocaleString('es-PE')} denuncias previstas` : item.name;
+    return z ? `${z.name} · ${z.profile} ${z.profileName} · ${z.forecast.toLocaleString('es-PE')} denuncias estimadas en evaluación histórica` : item.name;
   }
   lines(name: string): string[] {
     const nameText = this.zone({ name })?.name || name;
     const words = nameText.split(' ');
     return words.length > 1 ? [words.slice(0, -1).join(' '), words[words.length - 1]] : [nameText];
   }
-  select(item: Territory): void { const z = this.zone(item); if (z) this.crimeService.selectDivision(z.code); }
+  select(item: Territory): void { const z = this.zone(item); if (z) { this.crimeService.selectDivision(z.code); this.crimeService.setTab('zona'); } }
   setMode(mode: MapThematicMode): void { this.crimeService.setThematicMode(mode); }
 }

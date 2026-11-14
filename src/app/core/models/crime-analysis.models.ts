@@ -12,7 +12,27 @@ export type LapdBureau = 'Central' | 'South' | 'West' | 'Valley';
 
 export type ProfileCode = 'P01' | 'P02' | 'P03' | 'P04' | 'P05' | 'P06';
 
+export interface DivisionAnalytics {
+  total: number;
+  startMonth: string;
+  endMonth: string;
+  topCrimes: { label: string; count: number; share: number }[];
+  monthly: { month: string; count: number }[];
+  hours: { label: string; count: number }[];
+  weekdays: { label: string; count: number }[];
+  comparison: { month: string; observed: number; estimated: number }[];
+  profileCounts: Record<string, number>;
+  reportZones: { zone: string; count: number; profile: string; share: number }[];
+  priorities: { zone: string; profile: string; score: number; count: number }[];
+  hotspots: { id: string; lat: number; lng: number; count: number; profile: string; zone: string }[];
+  averageObserved: number;
+  averageEstimated: number;
+}
+
 export interface DivisionZone {
+  analytics?: DivisionAnalytics;
+  estimateMonth?: string;
+  previousMonth?: string;
   code: string;
   name: string;
   bureau: LapdBureau;

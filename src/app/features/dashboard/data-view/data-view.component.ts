@@ -81,12 +81,13 @@ import { BarChartComponent, BarItem } from '../../../shared/components/bar-chart
 
       <div class="block">
         <div class="sec-h">
-          <h3>Artefactos del modelo</h3>
+          <h3>Archivos del análisis</h3>
           <span class="lbl">exportados por el notebook</span>
         </div>
         <div class="files">
           <code>resultados_modelos.csv</code>
           <code>catalogo_perfiles.csv</code>
+          <code>matriz_zona_perfil.csv</code>
           <code>perfil_zona_resumen.csv</code>
           <code>perfil_zona_largo.csv</code>
           <code>ranking_zona_perfil.csv</code>
@@ -130,8 +131,8 @@ import { BarChartComponent, BarItem } from '../../../shared/components/bar-chart
             deben compararse como si fueran la misma unidad.
           </li>
           <li>
-            Los hotspots de ~500 m son una capa complementaria de Unidad 2; no son salida
-            del modelo de perfilamiento de Unidad 3.
+            Los puntos de concentración agrupan denuncias en celdas de aproximadamente 500 m.
+            Su división se identifica por la zona de reporte principal de cada celda.
           </li>
           <li>
             Los polígonos del mapa corresponden a la delimitación geográfica oficial de

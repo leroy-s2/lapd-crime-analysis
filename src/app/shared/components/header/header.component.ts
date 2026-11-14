@@ -31,7 +31,7 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
           />
           <circle cx="12" cy="10" r="2.6" />
         </svg>
-        <span class="brand-name">Perfilamiento territorial</span>
+        <span class="brand-name">Consulta delictiva</span>
         <span class="brand-sep" aria-hidden="true"></span>
         <span class="brand-sub">LAPD · Los Ángeles</span>
       </div>
@@ -64,7 +64,7 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
       <div class="top-actions">
         <span class="chip-demo">
           <span class="dot" aria-hidden="true"></span>
-          GIS Real · 21 Distritos
+          21 divisiones policiales
         </span>
         <span class="topcut">Corte · nov 2023</span>
         <button

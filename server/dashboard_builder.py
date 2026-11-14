@@ -15,6 +15,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from server.operational_builder import build_operational
+
 PROFILE_CODES = ["P01", "P02", "P03", "P04", "P05", "P06"]
 PROFILE_LABELS = {
     "P01": "Delitos Vehiculares y Movilidad",
@@ -144,10 +146,15 @@ def _load_audit(output_dir: Path) -> pd.DataFrame:
 
 
 def _prepare_incidents(raw_csv_path: Path, output_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    raw = pd.read_csv(raw_csv_path, low_memory=False)
+    # Match the notebook's selected columns before removing duplicate incidents.
+    usecols = {"date_reported", "date_occurred", "reporting_district", "area_name",
+               "crime_description", "premise_description", "weapon_description",
+               "modus_operandi", "latitude", "longitude", "victim_age", "victim_sex", "victim_descent"}
+    raw = pd.read_csv(raw_csv_path, usecols=lambda c: str(c).strip().lower() in usecols, low_memory=False)
+    raw.columns = raw.columns.str.strip().str.lower()
     raw_rows = len(raw)
 
-    for column in ["crime_description", "premise_description", "weapon_description", "area_name", "reporting_district"]:
+    for column in ["crime_description", "premise_description", "weapon_description", "area_name", "reporting_district", "modus_operandi", "victim_sex", "victim_descent"]:
         if column not in raw:
             raw[column] = "NO_REGISTRADO"
         raw[column] = (
@@ -190,6 +197,8 @@ def _prepare_incidents(raw_csv_path: Path, output_dir: Path) -> tuple[pd.DataFra
         & ~((raw["latitude"] == 0) & (raw["longitude"] == 0))
     )
 
+    if "victim_age" in raw:
+        raw["victim_age"] = pd.to_numeric(raw["victim_age"], errors="coerce")
     raw = raw.drop_duplicates()
     raw = raw[raw["area_name"].ne("NO_REGISTRADO") & raw["month"].notna()].copy()
     last_month = raw["month"].max()
@@ -299,10 +308,12 @@ def build_dashboard(
         weekend=("weekend", "mean"),
         weapon=("has_weapon", "mean"),
     )
+    recent_end = incidents["month"].max()
+    recent_start = recent_end - 11
     area_inc12 = (
         incidents[
-            (incidents["month"] >= pd.Period("2023-01", freq="M"))
-            & (incidents["month"] <= pd.Period("2023-11", freq="M"))
+            (incidents["month"] >= recent_start)
+            & (incidents["month"] <= recent_end)
         ]
         .groupby("area_name")
         .size()
@@ -318,6 +329,7 @@ def build_dashboard(
     spark_periods = pd.period_range(end=last_target_period, periods=12, freq="M")
     monthly_counts = incidents.groupby(["area_name", "month"]).size()
 
+    operational = build_operational(incidents, predictions, summary, long, ranking, output_dir)
     zones: list[dict[str, Any]] = []
     for area_key, meta in DIVISION_META.items():
         area_name = area_key
@@ -333,6 +345,9 @@ def build_dashboard(
             spark.append(int(monthly_counts.get((area_name, period), 0)))
         zones.append(
             {
+                "analytics": operational.get(area_name),
+                "estimateMonth": last_target,
+                "previousMonth": str(previous_period),
                 "code": meta["code"],
                 "name": display_name,
                 "bureau": meta["bureau"],
@@ -440,14 +455,15 @@ def build_dashboard(
                 "r2": _safe_round(float(row["r2"]), 4),
             }
         )
-    model_rows.append(
-        {
-            "name": "Persistencia",
-            "mae": _safe_round(persistence_mae, 4),
-            "rmse": _safe_round(persistence_rmse, 4),
-            "r2": _safe_round(persistence_r2, 4),
-        }
-    )
+    if not any(row["name"].casefold() == "persistencia" for row in model_rows):
+        model_rows.append(
+            {
+                "name": "Persistencia",
+                "mae": _safe_round(persistence_mae, 4),
+                "rmse": _safe_round(persistence_rmse, 4),
+                "r2": _safe_round(persistence_r2, 4),
+            }
+        )
     best_mae = min(row["mae"] for row in model_rows)
     for row in model_rows:
         row["isBest"] = row["mae"] == best_mae

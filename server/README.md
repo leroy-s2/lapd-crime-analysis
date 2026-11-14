@@ -73,3 +73,17 @@ python3 server/build_seed.py \
 The service keeps jobs in memory and on disk. It is intentionally single-node
 and unauthenticated; put it behind the deployment platform's auth, queue, and
 retention policy before exposing it publicly.
+
+## Operational charts
+
+`operational_builder.py` adds per-division `analytics` to the dashboard payload:
+crime frequencies, dated monthly history, hours, weekdays, profile composition,
+observed-versus-estimated test results, reporting-zone counts, priority rankings
+and hotspot coordinates. It consumes the ten exported CSVs alongside the raw CSV.
+The raw reader uses the notebook's selected columns and normalization before
+deduplication, so division totals reconcile with the notebook's usable incidents.
+
+Profile matrices, zone summaries and rankings describe the earlier calibration
+period; they must not be presented as current-period totals. Test predictions are
+historical evaluation estimates, not a new forecast after the data cutoff.
+The `.keras` artifact stores the trained network; the charts use exported results.
