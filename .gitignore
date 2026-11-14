@@ -40,3 +40,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Python runtime and processing outputs
+.venv/
+__pycache__/
+*.py[cod]
+/server/jobs/
+.ipynb_checkpoints/

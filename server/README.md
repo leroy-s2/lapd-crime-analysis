@@ -7,7 +7,7 @@ Angular dashboard.
 
 - Python 3.11+
 - Jupyter and the notebook dependencies
-- The Unit 3 notebook available on the server
+- Processing notebook included in `server/notebooks/` (no separate upload required)
 
 Install dependencies:
 
@@ -15,18 +15,19 @@ Install dependencies:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r server/requirements.txt
+python -m ipykernel install --sys-prefix --name python3 --display-name "LAPD Python"
 ```
 
 ## Environment
 
 ```bash
-export LAPD_NOTEBOOK_PATH="/absolute/path/to/Arquitectura_Redes_Neuronales_Perfilamiento_Delictivo.ipynb"
 export LAPD_JOBS_DIR="/absolute/path/to/jobs"
 export LAPD_CORS_ORIGINS="http://localhost:4200"
 export LAPD_NOTEBOOK_TIMEOUT="7200"
 ```
 
-`LAPD_NOTEBOOK_PATH` is mandatory. `LAPD_JOBS_DIR` defaults to `server/jobs`.
+`LAPD_NOTEBOOK_PATH` is optional: by default the backend uses the notebook shipped
+in `server/notebooks/`. Set it only to override that file. `LAPD_JOBS_DIR` defaults to `server/jobs`.
 `LAPD_NOTEBOOK_TIMEOUT` is the per-cell timeout in seconds.
 
 ## Run
@@ -66,7 +67,7 @@ python3 server/build_seed.py \
 1. The CSV is stored as `jobs/<id>/input.csv`.
 2. The notebook is copied to `jobs/<id>/notebook.ipynb`.
 3. `jupyter nbconvert --execute` runs with `CRIME_DATA` pointing at the CSV.
-4. The notebook exports its CSV artifacts in `jobs/<id>/`.
+4. The notebook processes the uploaded raw data, trains models, and exports its CSV artifacts in `jobs/<id>/`.
 5. `dashboard_builder.py` normalizes those artifacts into `dashboard.json`.
 6. The Angular dashboard polls the job and applies the payload.
 
@@ -87,3 +88,9 @@ Profile matrices, zone summaries and rankings describe the earlier calibration
 period; they must not be presented as current-period totals. Test predictions are
 historical evaluation estimates, not a new forecast after the data cutoff.
 The `.keras` artifact stores the trained network; the charts use exported results.
+
+Only the raw incident CSV is uploaded through the web. The ten output CSVs and
+the `.keras` model are generated on the server. The bundled notebook has no saved
+outputs and does not install packages at runtime. Waiting jobs are serialized to
+keep at most one training process active; run Uvicorn with `--workers 1`. Job
+state is in memory and is not recovered after a service restart.

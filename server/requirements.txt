@@ -3,6 +3,7 @@ uvicorn[standard]>=0.30,<1
 python-multipart>=0.0.9
 pandas>=2.2
 numpy>=1.26
+ipykernel>=6.29
 jupyter>=1.0
 nbconvert>=7.16
 tensorflow-cpu>=2.16

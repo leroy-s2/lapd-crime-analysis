@@ -99,7 +99,8 @@ Transfer size: ~120 kB.
 ## Backend: run the notebook from the dashboard
 
 The **Fuente de datos** dialog can upload a LAPD CSV and run the Unit 3 notebook
-asynchronously. The Angular app polls the job and applies the returned dashboard
+asynchronously. The processing notebook is included in `server/notebooks/`; only
+the raw CSV must be uploaded. The Angular app polls the job and applies the returned dashboard
 payload without a reload.
 
 ```bash
@@ -107,7 +108,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r server/requirements.txt
 
-export LAPD_NOTEBOOK_PATH="/absolute/path/to/Arquitectura_Redes_Neuronales_Perfilamiento_Delictivo.ipynb"
+python -m ipykernel install --sys-prefix --name python3 --display-name "LAPD Python"
 export LAPD_JOBS_DIR="/absolute/path/to/jobs"
 export LAPD_CORS_ORIGINS="http://localhost:4200"
 
