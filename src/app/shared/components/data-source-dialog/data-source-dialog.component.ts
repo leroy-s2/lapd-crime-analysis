@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  OnDestroy,
   ViewChild,
   computed,
   inject,
@@ -9,12 +8,9 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
 import { CrimeAnalysisService } from '../../../core/services/crime-analysis.service';
 import {
-  DataJob,
   DataJobService,
-  DataJobStatus,
 } from '../../../core/services/data-job.service';
 
 @Component({
@@ -54,19 +50,23 @@ import {
           <div
             class="dropzone"
             [class.dragging]="isDragging()"
-            (click)="fileInput.click()"
+            [class.disabled]="running()"
+            [attr.aria-disabled]="running()"
+            (click)="!running() && fileInput.click()"
             (dragover)="onDragOver($event)"
             (dragleave)="onDragLeave($event)"
             (drop)="onDrop($event)"
             role="button"
             tabindex="0"
-            (keydown.enter)="fileInput.click()"
+            (keydown.enter)="!running() && fileInput.click()"
+            (keydown.space)="$event.preventDefault(); !running() && fileInput.click()"
           >
             <input
               #fileInput
               type="file"
               accept=".csv,text/csv"
               hidden
+              [disabled]="running()"
               (change)="onFileSelected($event)"
             />
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
@@ -94,36 +94,52 @@ import {
               (click)="startUpload()"
               [disabled]="!selectedFile() || running()"
             >
-              {{ running() ? 'Ejecutando…' : 'Subir y ejecutar notebook' }}
+              {{ running() ? jobService.label() : 'Subir y ejecutar notebook' }}
             </button>
           </div>
 
-          @if (job(); as currentJob) {
-            <div class="job-status" aria-live="polite">
+          @if (jobService.phase() !== 'idle') {
+            <div class="job-status" [attr.data-phase]="jobService.phase()" aria-live="polite" aria-atomic="true">
               <div class="job-head">
-                <span class="status-dot" [attr.data-status]="currentJob.status"></span>
-                <strong>{{ statusLabel(currentJob.status) }}</strong>
-                <span class="job-progress">{{ currentJob.progress }}%</span>
+                <span class="status-dot"></span>
+                <strong>{{ jobService.label() }}</strong>
+                @if (jobService.phase() !== 'failed') {
+                  <span class="job-progress">{{ jobService.progress() === null ? 'En curso' : jobService.progress() + '%' }}</span>
+                }
               </div>
-              <div class="progress" role="progressbar" [attr.aria-valuenow]="currentJob.progress" aria-valuemin="0" aria-valuemax="100">
-                <span [style.width.%]="currentJob.progress"></span>
-              </div>
-              <p class="job-message">{{ currentJob.message }}</p>
-              @if (currentJob.error) {
-                <pre class="error">{{ currentJob.error }}</pre>
+              @if (jobService.phase() !== 'failed') {
+                <div class="progress" [class.indeterminate]="jobService.progress() === null"
+                  role="progressbar" [attr.aria-label]="jobService.label()"
+                  [attr.aria-valuenow]="jobService.progress()" aria-valuemin="0" aria-valuemax="100">
+                  <span [style.width.%]="jobService.progress() ?? 35"></span>
+                </div>
               }
-              @if (currentJob.logs.length) {
-                <details>
-                  <summary>Ver log de ejecución</summary>
-                  <pre>{{ currentJob.logs.join('\n') }}</pre>
-                </details>
+              @if (jobService.phase() === 'uploading') {
+                <p class="job-message">{{ formatSize(jobService.uploadedBytes()) }} enviados@if(jobService.totalBytes(); as total) { de {{ formatSize(total) }} }</p>
+              }
+              @if (jobService.processing() || jobService.phase() === 'completed') {
+                <span class="upload-done">✓ Subida completada · 100 %</span>
+              }
+              <p class="job-message">{{ jobService.message() }}</p>
+              @if (running()) {
+                <p class="job-message">El estado seguirá visible en el botón «Fuente de datos» aunque cierres esta ventana. Mantén esta pestaña abierta.</p>
+              }
+              @if (job(); as currentJob) {
+                @if (currentJob.logs.length) {
+                  <details>
+                    <summary>Ver log de ejecución</summary>
+                    <pre>{{ currentJob.logs.join('\n') }}</pre>
+                  </details>
+                }
               }
             </div>
+          } @else if (selectedFile()) {
+            <p class="job-message">Archivo listo. Pulsa «Subir y ejecutar notebook» para enviarlo.</p>
+          }
+          @if (error()) {
+            <p class="error inline-error" role="alert">{{ error() }}</p>
           }
 
-          @if (error()) {
-            <p class="error inline-error">{{ error() }}</p>
-          }
         </section>
 
         <p>
@@ -142,7 +158,7 @@ import {
           {{ copied ? '¡Copiado!' : 'Copiar esquema JSON' }}
         </button>
         <button class="btn btn-primary" type="button" (click)="close()">
-          {{ job()?.status === 'completed' ? 'Ver datos actualizados' : 'Cerrar' }}
+          {{ jobService.phase() === 'completed' ? 'Ver datos actualizados' : 'Cerrar' }}
         </button>
       </div>
     </dialog>
@@ -273,19 +289,21 @@ import {
         border-radius: 50%;
         background: var(--muted);
       }
-      .status-dot[data-status='queued'] {
-        background: var(--warn);
+      .job-status { --job-color: #15803d; }
+      .job-status[data-phase='queued'], .job-status[data-phase='running'], .job-status[data-phase='applying'] { --job-color: #c2410c; }
+      .job-status[data-phase='failed'] { --job-color: #b91c1c; }
+      .job-status .status-dot, .job-status .progress span { background: var(--job-color); }
+      .job-status[data-phase='running'] .status-dot, .job-status[data-phase='queued'] .status-dot { animation: pulse 1.2s ease-in-out infinite; }
+      .job-status[data-phase='running'] .progress span, .job-status[data-phase='queued'] .progress span, .job-status[data-phase='applying'] .progress span {
+        background-image: repeating-linear-gradient(115deg, transparent 0 8px, #ffffff55 8px 16px);
+        background-size: 35px 100%; animation: processing 1s linear infinite;
       }
-      .status-dot[data-status='running'] {
-        background: var(--accent);
-        animation: pulse 1.2s ease-in-out infinite;
-      }
-      .status-dot[data-status='completed'] {
-        background: oklch(58% 0.16 155);
-      }
-      .status-dot[data-status='failed'] {
-        background: oklch(58% 0.2 25);
-      }
+      .upload-done { color: #15803d; font-size: 11px; }
+      .dropzone.disabled { cursor: default; opacity: .65; }
+      .progress.indeterminate span { animation: transfer 1.2s ease-in-out infinite; }
+      @keyframes transfer { from { transform: translateX(-100%); } to { transform: translateX(320%); } }
+      @keyframes processing { to { background-position: 35px 0; } }
+      @media (prefers-reduced-motion: reduce) { .job-status .progress span, .job-status .status-dot { animation: none !important; } }
       @keyframes pulse {
         50% {
           opacity: 0.35;
@@ -385,26 +403,21 @@ import {
     `,
   ],
 })
-export class DataSourceDialogComponent implements OnDestroy {
+export class DataSourceDialogComponent {
   readonly closed = output<void>();
   readonly crimeService = inject(CrimeAnalysisService);
-  private readonly jobService = inject(DataJobService);
+  readonly jobService = inject(DataJobService);
 
   @ViewChild('dialogElement') dialogRef?: ElementRef<HTMLDialogElement>;
   @ViewChild('fileInput') fileInputRef?: ElementRef<HTMLInputElement>;
 
   readonly selectedFile = signal<File | null>(null);
-  readonly job = signal<DataJob | null>(null);
-  readonly error = signal<string | null>(null);
+  readonly job = this.jobService.job;
+  readonly error = computed(() => this.validationError() ?? this.jobService.error());
+  readonly validationError = signal<string | null>(null);
   readonly isDragging = signal(false);
-  readonly running = computed(() => {
-    const status = this.job()?.status;
-    return status === 'queued' || status === 'running';
-  });
-
+  readonly running = this.jobService.busy;
   copied = false;
-  private pollSubscription?: Subscription;
-  private resultLoaded = false;
 
   readonly jsonSchema = `{
   "code": "D-01",
@@ -431,10 +444,6 @@ export class DataSourceDialogComponent implements OnDestroy {
   "premises": [{ "k": "Vía pública", "v": 44.63 }],
   "spark": [1514, 1542, 1332, 1351, 1365, 1297]
 }`;
-
-  ngOnDestroy(): void {
-    this.pollSubscription?.unsubscribe();
-  }
 
   open(): void {
     this.dialogRef?.nativeElement.showModal();
@@ -484,41 +493,16 @@ export class DataSourceDialogComponent implements OnDestroy {
   startUpload(): void {
     const file = this.selectedFile();
     if (!file || this.running()) return;
-
-    this.error.set(null);
-    this.resultLoaded = false;
-    this.jobService.startJob(file).subscribe({
-      next: (job) => {
-        this.job.set(job);
-        this.poll(job.id);
-      },
-      error: (err) => this.error.set(this.describeError(err)),
-    });
+    this.validationError.set(null);
+    this.jobService.upload(file);
   }
 
   clearFile(): void {
     if (this.running()) return;
     this.selectedFile.set(null);
-    this.job.set(null);
-    this.error.set(null);
-    this.resultLoaded = false;
-    this.pollSubscription?.unsubscribe();
-    if (this.fileInputRef?.nativeElement) {
-      this.fileInputRef.nativeElement.value = '';
-    }
-  }
-
-  statusLabel(status: DataJobStatus): string {
-    switch (status) {
-      case 'queued':
-        return 'En cola';
-      case 'running':
-        return 'Ejecutando notebook';
-      case 'completed':
-        return 'Resultados aplicados';
-      case 'failed':
-        return 'Error de ejecución';
-    }
+    this.validationError.set(null);
+    this.jobService.reset();
+    if (this.fileInputRef?.nativeElement) this.fileInputRef.nativeElement.value = '';
   }
 
   formatSize(bytes: number): string {
@@ -537,69 +521,18 @@ export class DataSourceDialogComponent implements OnDestroy {
   }
 
   private setFile(file: File): void {
+    if (this.running()) return;
     if (!file.name.toLowerCase().endsWith('.csv')) {
-      this.error.set('Selecciona un archivo .csv exportado por LAPD.');
+      this.validationError.set('Selecciona un archivo .csv exportado por LAPD.');
       return;
     }
     if (file.size > 512 * 1024 * 1024) {
-      this.error.set('El archivo supera el límite de 512 MB.');
+      this.validationError.set('El archivo supera el límite de 512 MB.');
       return;
     }
-    this.error.set(null);
-    this.job.set(null);
-    this.resultLoaded = false;
+    this.validationError.set(null);
+    this.jobService.reset();
     this.selectedFile.set(file);
   }
 
-  private poll(jobId: string): void {
-    this.pollSubscription?.unsubscribe();
-    this.pollSubscription = this.jobService.pollJob(jobId).subscribe({
-      next: (job) => {
-        this.job.set(job);
-        if (job.status === 'completed') {
-          this.loadResult(job.id);
-        } else if (job.status === 'failed') {
-          this.error.set(job.error ?? 'La ejecución del notebook falló.');
-        }
-      },
-      error: (err) => this.error.set(this.describeError(err)),
-    });
-  }
-
-  private loadResult(jobId: string): void {
-    if (this.resultLoaded) return;
-    this.resultLoaded = true;
-    this.jobService.getResult(jobId).subscribe({
-      next: (payload) => {
-        this.crimeService.applyDashboard(payload);
-        this.job.update((job) =>
-          job ? { ...job, message: 'Datos aplicados al tablero' } : job
-        );
-      },
-      error: (err) => {
-        this.resultLoaded = false;
-        this.error.set(this.describeError(err));
-      },
-    });
-  }
-
-  private describeError(err: unknown): string {
-    if (typeof err === 'object' && err !== null) {
-      const candidate = err as {
-        status?: number;
-        error?: { detail?: string; message?: string };
-        message?: string;
-      };
-      if (candidate.status === 0) {
-        return 'No se pudo conectar con el servicio de ejecución. Verifica que el backend esté en http://localhost:8000.';
-      }
-      return (
-        candidate.error?.detail ??
-        candidate.error?.message ??
-        candidate.message ??
-        'Error inesperado al ejecutar el notebook.'
-      );
-    }
-    return 'Error inesperado al ejecutar el notebook.';
-  }
 }

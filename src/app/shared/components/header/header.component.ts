@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DataJobService } from '../../../core/services/data-job.service';
 import { CrimeAnalysisService } from '../../../core/services/crime-analysis.service';
 
 @Component({
@@ -68,11 +69,20 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
         </span>
         <span class="topcut">Corte · nov 2023</span>
         <button
-          class="btn"
+          class="btn source-button"
+          [attr.data-phase]="jobService.phase()"
+          [attr.aria-label]="'Fuente de datos. ' + jobService.label()"
+          [attr.aria-busy]="jobService.busy()"
+          [title]="jobService.filename() ? jobService.filename() + ' · ' + jobService.message() : 'Cargar un dataset'"
           type="button"
           (click)="openDataSource.emit()"
           aria-haspopup="dialog"
         >
+          @if (jobService.phase() !== 'idle') {
+            <span class="source-fill" aria-hidden="true"
+              [class.unknown]="jobService.progress() === null"
+              [style.width.%]="jobService.phase() === 'failed' ? 100 : (jobService.progress() ?? 35)"></span>
+          }
           <svg
             width="13"
             height="13"
@@ -86,7 +96,11 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
             <path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6" />
             <path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
           </svg>
-          Fuente de datos
+          <span class="source-caption">
+            <span>Fuente de datos</span>
+            @if (jobService.phase() !== 'idle') { <small aria-live="polite">{{ jobService.label() }}</small> }
+          </span>
+          @if (jobService.busy()) { <span class="source-spinner" aria-hidden="true"></span> }
         </button>
       </div>
     </header>
@@ -100,7 +114,8 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
         padding: 0 18px;
         background: var(--surface);
         border-bottom: 1px solid var(--border);
-        position: relative;
+        position: sticky;
+        top: 0;
         z-index: 30;
         height: 56px;
       }
@@ -221,6 +236,24 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
         white-space: nowrap;
       }
 
+      .source-button { position: relative; overflow: hidden; isolation: isolate; min-height: 36px; height: auto; padding: 5px 10px; --source-color: #15803d; --source-fill: #dcfce7; }
+      .source-button[data-phase='queued'], .source-button[data-phase='running'], .source-button[data-phase='applying'] { --source-color: #c2410c; --source-fill: #fed7aa; background: #fff7ed; }
+      .source-button[data-phase='failed'] { --source-color: #b91c1c; --source-fill: #fee2e2; }
+      .source-button:not([data-phase='idle']) { color: var(--source-color); border-color: var(--source-color); }
+      .source-fill { position: absolute; inset: 0 auto 0 0; z-index: -1; background: var(--source-fill); transition: width .2s ease; pointer-events: none; }
+      .source-caption { display: flex; flex-direction: column; align-items: start; line-height: 1.3; }
+      .source-caption small { font-size: 10px; font-variant-numeric: tabular-nums; }
+      .source-spinner { width: 11px; height: 11px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: source-spin .8s linear infinite; }
+      .source-button[data-phase='running'] .source-fill, .source-button[data-phase='queued'] .source-fill, .source-button[data-phase='applying'] .source-fill {
+        background-image: repeating-linear-gradient(115deg, transparent 0 8px, #fdba7444 8px 16px);
+        background-size: 35px 100%; animation: source-process 1s linear infinite;
+      }
+      .source-fill.unknown { animation: source-transfer 1.2s ease-in-out infinite; }
+      @keyframes source-spin { to { transform: rotate(360deg); } }
+      @keyframes source-transfer { from { transform: translateX(-100%); } to { transform: translateX(320%); } }
+      @keyframes source-process { to { background-position: 35px 0; } }
+      @media (prefers-reduced-motion: reduce) { .source-spinner, .source-fill { animation: none !important; transition: none; } }
+
       @media (max-width: 900px) {
         .top {
           padding: 0 12px;
@@ -248,6 +281,7 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
 })
 export class HeaderComponent {
   readonly crimeService = inject(CrimeAnalysisService);
+  readonly jobService = inject(DataJobService);
   readonly openDataSource = output<void>();
 
   @ViewChild('searchInput') searchInputElement?: ElementRef<HTMLInputElement>;
