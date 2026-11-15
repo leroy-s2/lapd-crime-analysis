@@ -89,10 +89,10 @@ interface Territory {
     .territory-map { display: block; width: 100%; height: auto; max-height: 1050px; overflow: visible; }
     path { stroke: var(--bg); stroke-width: 1.6; stroke-linejoin: round; cursor: pointer; transition: fill .15s, filter .15s; }
 
-    path:hover, path:focus-visible { filter: brightness(1.12); stroke: #0f172a; stroke-width: 2.5; outline: none; }
-    path.selected { stroke: #0f172a; stroke-width: 3; }
-    .label-leader { stroke: #64748b; stroke-width: .8; pointer-events: none; }
-    text { text-anchor: middle; font-family: var(--font-body); font-size: 10px; font-weight: 600; fill: #172033; stroke: #ffffff; stroke-width: 3px; paint-order: stroke; stroke-linejoin: round; pointer-events: none; }
+    path:hover, path:focus-visible { filter: brightness(1.12); stroke: var(--map-selection); stroke-width: 2.5; outline: none; }
+    path.selected { stroke: var(--map-selection); stroke-width: 3; }
+    .label-leader { stroke: var(--muted); stroke-width: .8; pointer-events: none; }
+    text { text-anchor: middle; font-family: var(--font-body); font-size: 10px; font-weight: 600; fill: var(--fg); stroke: var(--bg); stroke-width: 3px; paint-order: stroke; stroke-linejoin: round; pointer-events: none; }
     text.active-label { font-weight: 800; }
     footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 10px; color: var(--muted); padding: 12px 0 20px; }
     .active { display: inline-flex; align-items: center; gap: 6px; color: var(--fg); font-weight: 600; }

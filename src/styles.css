@@ -1,6 +1,7 @@
 @import 'leaflet/dist/leaflet.css';
 
 :root {
+  color-scheme: light;
   /* Visual direction: modern-minimal — civic blue, light slate, hairline borders */
   --bg: oklch(99% 0.002 240);
   --surface: oklch(100% 0 0);
@@ -16,6 +17,19 @@
   --accent-soft: oklch(96.5% 0.022 255);
   --warn: oklch(52% 0.13 55);
   --warn-soft: oklch(96.5% 0.03 70);
+
+  --success: #15803d;
+  --success-soft: #dcfce7;
+  --processing: #c2410c;
+  --processing-soft: #fed7aa;
+  --processing-track: #fff7ed;
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+  --chart-blue: #2563eb;
+  --chart-orange: #f59e0b;
+  --chart-orange-ink: #a16207;
+  --map-selection: #0f172a;
+  --on-accent: #ffffff;
 
   /* Profile colors */
   --profile-p01: #0ea5e9;
@@ -43,6 +57,41 @@
   --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --radius: 8px;
   --radius-lg: 12px;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --surface: #111c2e;
+  --surface-2: #19263b;
+  --water: #142237;
+  --fg: #e6edf7;
+  --fg-soft: #c6d2e3;
+  --muted: #a0b0c6;
+  --border: #293a52;
+  --border-strong: #40556f;
+  --accent: #60a5fa;
+  --accent-ink: #93c5fd;
+  --accent-soft: #1a3354;
+  --warn: #fdba74;
+  --warn-soft: #38271a;
+  --success: #86efac;
+  --success-soft: #16402e;
+  --processing: #fdba74;
+  --processing-soft: #51301c;
+  --processing-track: #2d211b;
+  --danger: #fca5a5;
+  --danger-soft: #432029;
+  --chart-blue: #60a5fa;
+  --chart-orange-ink: #fbbf24;
+  --map-selection: #f8fafc;
+  --on-accent: #071426;
+  --profile-p01-soft: #12384b;
+  --profile-p02-soft: #103d3b;
+  --profile-p03-soft: #443419;
+  --profile-p04-soft: #2b2b52;
+  --profile-p05-soft: #49233f;
+  --profile-p06-soft: #2b3749;
 }
 
 * {
@@ -162,7 +211,7 @@ button, input {
 }
 
 .leaflet-control-attribution {
-  background: rgba(255, 255, 255, 0.75) !important;
+  background: var(--surface) !important;
   font-family: var(--font-mono) !important;
   font-size: 9px !important;
   color: var(--muted) !important;
@@ -176,7 +225,7 @@ button, input {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
-  text-shadow: 0 0 3px white, 0 0 6px white, 0 0 8px white;
+  text-shadow: 0 0 3px var(--surface), 0 0 6px var(--surface);
   pointer-events: none;
 }
 
@@ -188,8 +237,8 @@ button, input {
 
 /* Tooltip on map hover */
 .leaflet-tooltip.district-tooltip {
-  background: var(--fg);
-  color: oklch(98% 0 0);
+  background: var(--surface);
+  color: var(--fg);
   border: none;
   border-radius: var(--radius);
   padding: 6px 10px;
@@ -198,5 +247,5 @@ button, input {
 }
 
 .leaflet-tooltip.district-tooltip::before {
-  border-top-color: var(--fg) !important;
+  border-top-color: var(--surface) !important;
 }

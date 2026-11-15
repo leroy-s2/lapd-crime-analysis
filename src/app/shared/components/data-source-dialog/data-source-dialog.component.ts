@@ -289,16 +289,16 @@ import {
         border-radius: 50%;
         background: var(--muted);
       }
-      .job-status { --job-color: #15803d; }
-      .job-status[data-phase='queued'], .job-status[data-phase='running'], .job-status[data-phase='applying'] { --job-color: #c2410c; }
-      .job-status[data-phase='failed'] { --job-color: #b91c1c; }
+      .job-status { --job-color: var(--success); }
+      .job-status[data-phase='queued'], .job-status[data-phase='running'], .job-status[data-phase='applying'] { --job-color: var(--processing); }
+      .job-status[data-phase='failed'] { --job-color: var(--danger); }
       .job-status .status-dot, .job-status .progress span { background: var(--job-color); }
       .job-status[data-phase='running'] .status-dot, .job-status[data-phase='queued'] .status-dot { animation: pulse 1.2s ease-in-out infinite; }
       .job-status[data-phase='running'] .progress span, .job-status[data-phase='queued'] .progress span, .job-status[data-phase='applying'] .progress span {
         background-image: repeating-linear-gradient(115deg, transparent 0 8px, #ffffff55 8px 16px);
         background-size: 35px 100%; animation: processing 1s linear infinite;
       }
-      .upload-done { color: #15803d; font-size: 11px; }
+      .upload-done { color: var(--success); font-size: 11px; }
       .dropzone.disabled { cursor: default; opacity: .65; }
       .progress.indeterminate span { animation: transfer 1.2s ease-in-out infinite; }
       @keyframes transfer { from { transform: translateX(-100%); } to { transform: translateX(320%); } }
@@ -330,9 +330,9 @@ import {
         margin: 0;
         padding: 9px 10px;
         border-radius: var(--radius);
-        border: 1px solid color-mix(in oklab, oklch(58% 0.2 25) 35%, transparent);
-        background: color-mix(in oklab, oklch(58% 0.2 25) 8%, white);
-        color: oklch(40% 0.18 25);
+        border: 1px solid var(--danger);
+        background: var(--danger-soft);
+        color: var(--danger);
         font-family: var(--font-mono);
         font-size: 10.5px;
         line-height: 1.5;
@@ -389,12 +389,12 @@ import {
       }
       .btn-primary {
         background: var(--accent);
-        color: white;
+        color: var(--on-accent);
         border-color: var(--accent);
       }
       .btn-primary:hover {
         background: var(--accent-ink);
-        color: white;
+        color: var(--on-accent);
       }
       .btn:disabled {
         opacity: 0.45;

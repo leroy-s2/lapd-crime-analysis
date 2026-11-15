@@ -19,11 +19,11 @@ export interface ChartPoint { label: string; value: number; other?: number; colo
               <line x1="52" x2="615" [attr.y1]="185 - t * 160" [attr.y2]="185 - t * 160" stroke="var(--border)" />
               <text x="44" [attr.y]="189 - t * 160" text-anchor="end">{{ (ceiling() * t).toLocaleString('es-PE', {maximumFractionDigits: 0}) }}</text>
             }
-            <polyline [attr.points]="points(false)" fill="none" stroke="#2563eb" stroke-width="2.5" />
-            @if (hasOther()) { <polyline [attr.points]="points(true)" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6 4" /> }
+            <polyline [attr.points]="points(false)" fill="none" stroke="var(--chart-blue)" stroke-width="2.5" />
+            @if (hasOther()) { <polyline [attr.points]="points(true)" fill="none" stroke="var(--chart-orange)" stroke-width="2.5" stroke-dasharray="6 4" /> }
             @for (p of data(); track $index) {
-              <circle [attr.cx]="x($index)" [attr.cy]="y(p.value)" r="3" fill="#2563eb"><title>{{ p.label }}: {{ p.value }}</title></circle>
-              @if (hasOther()) { <circle [attr.cx]="x($index)" [attr.cy]="y(p.other || 0)" r="3" fill="#f59e0b"><title>{{ p.label }} · estimado: {{ p.other }}</title></circle> }
+              <circle [attr.cx]="x($index)" [attr.cy]="y(p.value)" r="3" fill="var(--chart-blue)"><title>{{ p.label }}: {{ p.value }}</title></circle>
+              @if (hasOther()) { <circle [attr.cx]="x($index)" [attr.cy]="y(p.other || 0)" r="3" fill="var(--chart-orange)"><title>{{ p.label }} · estimado: {{ p.other }}</title></circle> }
               @if ($index === 0 || $index === data().length - 1 || $index % labelStep() === 0) { <text [attr.x]="x($index)" y="213" text-anchor="middle">{{ p.label }}</text> }
             }
           </svg>
@@ -42,7 +42,7 @@ export interface ChartPoint { label: string; value: number; other?: number; colo
     :host {display:block;min-width:0} svg {width:100%;display:block} text {font-size:10px;fill:var(--muted);font-family:var(--font-body)}
     .bars {display:grid;gap:12px}.bar-row {display:grid;grid-template-columns:minmax(100px,1fr) minmax(60px,1.5fr) auto;gap:12px;align-items:center;font-size:12px}.bar-label {overflow-wrap:anywhere;line-height:1.4}.track {height:10px;background:var(--surface-2);border-radius:3px;overflow:hidden}.track span {display:block;height:100%;border-radius:3px}.bar-row strong {font-size:12px;font-variant-numeric:tabular-nums}
     .donut-layout {display:flex;gap:28px;align-items:center;flex-wrap:wrap}.donut {width:190px;height:190px;border-radius:50%;padding:26px;flex-shrink:0}.donut>div {background:var(--surface);border-radius:50%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center}.donut strong {font-size:23px}.donut span {font-size:11px;color:var(--muted)}.donut-legend {flex:1;min-width:180px;display:grid;gap:12px;font-size:12px}.donut-legend>div {display:flex;gap:8px;align-items:center}.donut-legend span {flex:1}.donut-legend i {width:9px;height:9px;border-radius:2px;flex-shrink:0}
-    .series-key {display:flex;gap:18px;justify-content:center;font-size:11px;color:#2563eb}.series-key span:last-child {color:#a16207}
+    .series-key {display:flex;gap:18px;justify-content:center;font-size:11px;color:var(--chart-blue)}.series-key span:last-child {color:var(--chart-orange-ink)}
     .chart-data {margin-top:16px;font-size:11px;color:var(--muted)}summary {cursor:pointer}table {width:100%;border-collapse:collapse;margin-top:10px}td,th {padding:5px;text-align:left;border-bottom:1px solid var(--border)}.empty {font-size:12px;color:var(--muted)}
   `]
 })

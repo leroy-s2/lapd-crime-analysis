@@ -1,3 +1,4 @@
+import { ThemeService } from '../../../core/services/theme.service';
 import {
   Component,
   ElementRef,
@@ -68,6 +69,14 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
           21 divisiones policiales
         </span>
         <span class="topcut">Corte · nov 2023</span>
+        <button class="theme-switch" type="button" role="switch"
+          aria-label="Modo oscuro" [attr.aria-checked]="themeService.isDark()"
+          [title]="themeService.isDark() ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
+          (click)="themeService.toggle()">
+          <svg class="theme-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+          <svg class="theme-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
+          <span class="theme-thumb" aria-hidden="true"></span>
+        </button>
         <button
           class="btn source-button"
           [attr.data-phase]="jobService.phase()"
@@ -236,9 +245,17 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
         white-space: nowrap;
       }
 
-      .source-button { position: relative; overflow: hidden; isolation: isolate; min-height: 36px; height: auto; padding: 5px 10px; --source-color: #15803d; --source-fill: #dcfce7; }
-      .source-button[data-phase='queued'], .source-button[data-phase='running'], .source-button[data-phase='applying'] { --source-color: #c2410c; --source-fill: #fed7aa; background: #fff7ed; }
-      .source-button[data-phase='failed'] { --source-color: #b91c1c; --source-fill: #fee2e2; }
+      .theme-switch { position: relative; display: inline-flex; align-items: center; justify-content: space-between; flex-shrink: 0; width: 54px; height: 30px; padding: 0 7px; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--surface-2); color: var(--muted); cursor: pointer; }
+      .theme-switch:hover { border-color: var(--accent); }
+      .theme-switch svg { position: relative; z-index: 1; pointer-events: none; }
+      .theme-thumb { position: absolute; top: 2px; left: 2px; width: 24px; height: 24px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 4px #0002; transition: transform .18s ease; }
+      .theme-switch[aria-checked='true'] .theme-thumb { transform: translateX(24px); background: var(--accent-soft); }
+      .theme-switch[aria-checked='false'] .theme-sun { color: var(--accent-ink); }
+      .theme-switch[aria-checked='true'] .theme-moon { color: var(--accent-ink); }
+      @media (prefers-reduced-motion: reduce) { .theme-thumb { transition: none; } }
+      .source-button { position: relative; overflow: hidden; isolation: isolate; min-height: 36px; height: auto; padding: 5px 10px; --source-color: var(--success); --source-fill: var(--success-soft); }
+      .source-button[data-phase='queued'], .source-button[data-phase='running'], .source-button[data-phase='applying'] { --source-color: var(--processing); --source-fill: var(--processing-soft); background: var(--processing-track); }
+      .source-button[data-phase='failed'] { --source-color: var(--danger); --source-fill: var(--danger-soft); }
       .source-button:not([data-phase='idle']) { color: var(--source-color); border-color: var(--source-color); }
       .source-fill { position: absolute; inset: 0 auto 0 0; z-index: -1; background: var(--source-fill); transition: width .2s ease; pointer-events: none; }
       .source-caption { display: flex; flex-direction: column; align-items: start; line-height: 1.3; }
@@ -272,6 +289,16 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
       }
 
       @media (max-width: 560px) {
+        .top { height: auto; min-height: 56px; flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
+        .brand-name { font-size: 12px; }
+        .brand { gap: 6px; }
+        .brand-sep { display: none; }
+        .top-actions { margin-left: auto; gap: 8px; }
+        .source-button { padding: 5px 7px; gap: 5px; }
+        .source-caption small { font-size: 9px; }
+        .source-spinner { display: none; }
+        .search { order: 3; flex: 1 0 100%; }
+
         .chip-demo {
           display: none;
         }
@@ -282,6 +309,7 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
 export class HeaderComponent {
   readonly crimeService = inject(CrimeAnalysisService);
   readonly jobService = inject(DataJobService);
+  readonly themeService = inject(ThemeService);
   readonly openDataSource = output<void>();
 
   @ViewChild('searchInput') searchInputElement?: ElementRef<HTMLInputElement>;
