@@ -116,6 +116,13 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
   `,
   styles: [
     `
+      :host {
+        display: block;
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        flex-shrink: 0;
+      }
       .top {
         display: flex;
         align-items: center;
@@ -123,9 +130,6 @@ import { CrimeAnalysisService } from '../../../core/services/crime-analysis.serv
         padding: 0 18px;
         background: var(--surface);
         border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 30;
         height: 56px;
       }
       .brand {

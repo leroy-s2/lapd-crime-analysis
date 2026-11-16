@@ -32,6 +32,10 @@ export class DataJobService implements OnDestroy {
     (typeof location !== 'undefined' && ['localhost', '127.0.0.1'].includes(location.hostname)
       ? 'http://localhost:8000' : '');
 
+  readonly restoringLatest = signal(false);
+  readonly restorationNotice = signal<string | null>(null);
+  private latestSubscription?: Subscription;
+
   readonly phase = signal<TransferPhase>('idle');
   readonly job = signal<DataJob | null>(null);
   readonly error = signal<string | null>(null);
@@ -72,6 +76,30 @@ export class DataJobService implements OnDestroy {
   private uploadSubscription?: Subscription;
   private pollSubscription?: Subscription;
   private resultSubscription?: Subscription;
+
+  restoreLatest(): void {
+    this.latestSubscription?.unsubscribe();
+    this.restoringLatest.set(true);
+    this.restorationNotice.set(null);
+    const initialRun = this.crimeService.modelRun();
+    this.latestSubscription = this.http.get<DashboardPayload>(`${this.apiBase}/api/dashboard/latest`).subscribe({
+      next: payload => {
+        // An older startup request must never replace a newly uploaded result.
+        if (this.phase() === 'idle' && this.crimeService.modelRun() === initialRun) {
+          this.crimeService.applyDashboard(payload);
+        }
+        this.restoringLatest.set(false);
+      },
+      error: err => {
+        this.restoringLatest.set(false);
+        if (this.phase() !== 'idle' || this.crimeService.modelRun() !== initialRun) return;
+        const status = (err as { status?: number })?.status;
+        this.restorationNotice.set(status === 404
+          ? 'No hay resultados procesados guardados disponibles; se muestran los resultados iniciales de referencia.'
+          : 'No se pudo recuperar la última ejecución del servidor. Comprueba la conexión y vuelve a cargar la página.');
+      },
+    });
+  }
 
   startJob(file: File): Observable<HttpEvent<DataJob>> {
     const form = new FormData();
@@ -130,7 +158,7 @@ export class DataJobService implements OnDestroy {
     this.phase.set('idle');
   }
 
-  ngOnDestroy(): void { this.unsubscribe(); }
+  ngOnDestroy(): void { this.unsubscribe(); this.latestSubscription?.unsubscribe(); }
 
   private poll(jobId: string): void {
     this.pollSubscription = this.pollJob(jobId).subscribe({
@@ -146,6 +174,7 @@ export class DataJobService implements OnDestroy {
       this.resultSubscription = this.getResult(job.id).subscribe({
         next: payload => {
           this.crimeService.applyDashboard(payload);
+          this.restorationNotice.set(null);
           this.phase.set('completed');
         },
         error: err => this.fail(`El análisis terminó, pero no se pudieron aplicar los resultados. ${this.describeError(err)}`),

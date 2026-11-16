@@ -25,7 +25,7 @@ describe('DataJobService upload lifecycle', () => {
     applyDashboard = jasmine.createSpy('applyDashboard');
     TestBed.configureTestingModule({ providers: [
       provideHttpClient(), provideHttpClientTesting(),
-      { provide: CrimeAnalysisService, useValue: { applyDashboard } },
+      { provide: CrimeAnalysisService, useValue: { applyDashboard, modelRun: () => DASHBOARD_SEED.modelRun } },
     ] });
     service = TestBed.inject(DataJobService);
     http = TestBed.inject(HttpTestingController);
@@ -101,5 +101,31 @@ describe('DataJobService upload lifecycle', () => {
     jobs.error({ status: 0 });
     expect(service.phase()).toBe('failed');
     expect(service.error()).toContain('puede seguir ejecutándose');
+  });
+  it('restores persisted results on startup without changing their original generation date', () => {
+    service.restoreLatest();
+    expect(service.restoringLatest()).toBeTrue();
+    const persisted = { ...DASHBOARD_SEED, modelRun: { ...DASHBOARD_SEED.modelRun, jobId: 'saved', generatedAt: '2026-11-15T20:00:00Z' } };
+    http.expectOne(req => req.url.endsWith('/api/dashboard/latest')).flush(persisted);
+    expect(applyDashboard).toHaveBeenCalledWith(persisted);
+    expect(service.restoringLatest()).toBeFalse();
+  });
+
+  it('does not replace a new upload with a delayed startup response', () => {
+    service.restoreLatest();
+    const restore = http.expectOne(req => req.url.endsWith('/api/dashboard/latest'));
+    service.upload(new File(['csv'], 'new.csv'));
+    const upload = http.expectOne(req => req.method === 'POST');
+    restore.flush(DASHBOARD_SEED);
+    expect(applyDashboard).not.toHaveBeenCalled();
+    upload.flush(queued, { status: 202, statusText: 'Accepted' });
+  });
+
+  it('identifies the reference fallback when no persisted execution is available', () => {
+    service.restoreLatest();
+    http.expectOne(req => req.url.endsWith('/api/dashboard/latest')).flush({}, { status: 404, statusText: 'Not Found' });
+    expect(applyDashboard).not.toHaveBeenCalled();
+    expect(service.restorationNotice()).toContain('resultados iniciales de referencia');
+    expect(service.restoringLatest()).toBeFalse();
   });
 });

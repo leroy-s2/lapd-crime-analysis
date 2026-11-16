@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
 from .runner import JOB_ROOT, NOTEBOOK_PATH, store
+from .dashboard_store import load_latest_dashboard
 
 MAX_UPLOAD_BYTES = int(os.environ.get("LAPD_MAX_UPLOAD_BYTES", str(512 * 1024 * 1024)))
 ALLOWED_ARTIFACTS = {
@@ -58,6 +59,14 @@ def health() -> dict[str, object]:
         "jupyterAvailable": shutil.which("jupyter") is not None,
         "jobsRoot": str(JOB_ROOT),
     }
+
+
+@app.get("/api/dashboard/latest")
+def latest_dashboard() -> JSONResponse:
+    payload = load_latest_dashboard(JOB_ROOT)
+    if payload is None:
+        raise HTTPException(status_code=404, detail="Todavía no hay resultados procesados guardados")
+    return JSONResponse(content=payload, headers={"Cache-Control": "no-store"})
 
 
 @app.post("/api/jobs", status_code=202)

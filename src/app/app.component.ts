@@ -1,4 +1,5 @@
-import { Component, ViewChild, computed, inject } from '@angular/core';
+import { DataJobService } from './core/services/data-job.service';
+import { Component, OnInit, ViewChild, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CrimeAnalysisService } from './core/services/crime-analysis.service';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -26,7 +27,11 @@ import { ViewTab } from './core/models/crime-analysis.models';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  private readonly jobService = inject(DataJobService);
+
+  ngOnInit(): void { this.jobService.restoreLatest(); }
+
   readonly crimeService = inject(CrimeAnalysisService);
 
   @ViewChild('dataSourceDialog') dataSourceDialog?: DataSourceDialogComponent;

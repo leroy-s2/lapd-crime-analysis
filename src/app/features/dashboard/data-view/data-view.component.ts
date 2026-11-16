@@ -1,3 +1,4 @@
+import { DataJobService } from '../../../core/services/data-job.service';
 import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CrimeAnalysisService } from '../../../core/services/crime-analysis.service';
@@ -11,11 +12,21 @@ import { BarChartComponent, BarItem } from '../../../shared/components/bar-chart
     <section class="pane" id="pane-datos" role="tabpanel" aria-labelledby="tab-datos">
       <div class="block" style="margin-top: 14px">
         <div class="sec-h">
-          <h3>Última ejecución</h3>
+          <h3>Resultados mostrados</h3>
           <span class="lbl">{{ run().datasetName }}</span>
         </div>
+        @if (jobService.restoringLatest()) {
+          <p class="note" role="status">Consultando la última ejecución guardada en el servidor…</p>
+        }
+        @if (jobService.restorationNotice()) {
+          <p class="note" role="status">{{ jobService.restorationNotice() }}</p>
+        }
         <table class="grid2">
           <tbody>
+            <tr>
+              <td>Origen de los datos</td>
+              <td>{{ run().jobId ? 'Ejecución procesada en el servidor' : 'Resultados iniciales de referencia' }}</td>
+            </tr>
             <tr>
               <td>Generado</td>
               <td>{{ formatDate(run().generatedAt) }}</td>
@@ -38,12 +49,13 @@ import { BarChartComponent, BarItem } from '../../../shared/components/bar-chart
             </tr>
             <tr>
               <td>Trabajo</td>
-              <td>{{ run().jobId ?? 'Semilla local' }}</td>
+              <td>{{ run().jobId ?? 'Sin ejecución asociada' }}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
+      <p class="note">«Generado» indica cuándo se construyeron estos resultados, no cuándo se seleccionó o empezó a subir el archivo. Una carga nueva cambia la fecha al finalizar correctamente.</p>
       <div class="block">
         <div class="sec-h">
           <h3>Alcance del dataset</h3>
@@ -263,6 +275,7 @@ import { BarChartComponent, BarItem } from '../../../shared/components/bar-chart
 })
 export class DataViewComponent {
   readonly crimeService = inject(CrimeAnalysisService);
+  readonly jobService = inject(DataJobService);
   readonly run = this.crimeService.modelRun;
 
   private readonly nf0 = new Intl.NumberFormat('es-ES');

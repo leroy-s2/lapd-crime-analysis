@@ -116,7 +116,7 @@ La persistencia estima t+1 repitiendo el conteo de t. La MLP reduce su MAE aprox
 | `server/operational_builder.py` | Agregados estadísticos por división. |
 | `server/build_seed.py` | Regeneración de los resultados iniciales. |
 
-El flujo comienza con un CSV recibido por FastAPI. El ejecutor crea una carpeta por trabajo y ejecuta el notebook mediante Jupyter. Los constructores convierten las salidas en `dashboard.json`. Angular consulta el estado cada 1,5 segundos y solicita el resultado al finalizar. La subida y el seguimiento pertenecen a un servicio compartido y no se cancelan al cerrar el diálogo.
+Al abrir la web se consulta la última ejecución guardada en disco. Su fecha de generación se conserva; no se reemplaza por la fecha de apertura de la página. El flujo de una nueva carga comienza con un CSV recibido por FastAPI. El ejecutor crea una carpeta por trabajo y ejecuta el notebook mediante Jupyter. Los constructores convierten las salidas en `dashboard.json`. Angular consulta el estado cada 1,5 segundos y solicita el resultado al finalizar. La subida y el seguimiento pertenecen a un servicio compartido y no se cancelan al cerrar el diálogo.
 
 ## Ejecutar en desarrollo
 
@@ -250,7 +250,7 @@ Los resultados iniciales se pueden regenerar sin reentrenar si ya se dispone del
 - Las estimaciones históricas no constituyen una validación operativa futura.
 - El archivo `.keras` no sustituye la preparación de variables, el escalado ni la codificación necesarios para reutilizar la red.
 - El estado de trabajos vive en memoria. Reiniciar el backend interrumpe ejecuciones y pierde la consulta de esos identificadores, aunque los archivos permanezcan en disco.
-- Cerrar el diálogo mantiene el seguimiento; recargar la página pierde el seguimiento del frontend y vuelve a mostrar los resultados iniciales de referencia. No existe una restauración automática del último dashboard procesado.
+- Cerrar el diálogo mantiene el seguimiento; recargar la página pierde el seguimiento del trabajo activo, pero recupera el último dashboard generado disponible en el servidor mediante `/api/dashboard/latest`. Si no existe o no puede recuperarse, se conservan los resultados iniciales y se informa en «Fuente y alcance».
 - Los trabajos se conservan en disco sin limpieza automática y la cola no está distribuida entre varias máquinas.
 
 Las salidas apoyan la revisión de información territorial agregada. No permiten predecir conductas individuales ni automatizar intervenciones policiales.

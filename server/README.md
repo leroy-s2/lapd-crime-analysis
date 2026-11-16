@@ -82,6 +82,7 @@ El constructor del dashboard utiliza las mismas columnas seleccionadas que el no
 | Método | Ruta | Resultado |
 | --- | --- | --- |
 | GET | `/api/health` | Estado del servicio y disponibilidad del notebook y Jupyter. |
+| GET | `/api/dashboard/latest` | Recupera el último dashboard generado en disco, incluso después de reiniciar la API. |
 | POST | `/api/jobs` | Recibe el CSV y devuelve el trabajo con HTTP 202. |
 | GET | `/api/jobs/{id}` | Estado, etapa, mensajes y últimas líneas del log. |
 | GET | `/api/jobs/{id}/result` | JSON del dashboard cuando el trabajo terminó. |
@@ -186,7 +187,7 @@ Después de regenerar el JSON, vuelve a compilar Angular para publicar el nuevo 
 | Subida rechazada con 413 | Comprueba tanto `client_max_body_size` en Nginx como `LAPD_MAX_UPLOAD_BYTES`. |
 | Fallo por historial insuficiente | Revisa meses disponibles, columnas y límites de filas para pruebas. |
 | Trabajo `failed` | Consulta `error`, `logs`, `journalctl -u lapd` y el notebook ejecutado, si está disponible. |
-| HTTP 404 después de reiniciar | El registro en memoria se perdió; los archivos existentes no se registran automáticamente. |
+| HTTP 404 después de reiniciar | El registro de trabajos en memoria se perdió. `/api/dashboard/latest` permite recuperar el último dashboard, pero no reconstruye los estados de esos trabajos. |
 | Cambios de código sin efecto | Confirma que actualizaste `/opt/lapd`, no solo el clon de Git; reinicia el backend si cambió Python. |
 
 Comandos del despliegue utilizado:
@@ -199,3 +200,16 @@ df -h /
 ```
 
 El servicio no implementa autenticación propia, cancelación de trabajos, recuperación automática de estados ni limpieza de resultados. La configuración de acceso, la conservación de archivos y el seguimiento de consumo pertenecen a la operación del despliegue. No reinicies el servicio mientras existan ejecuciones que quieras conservar activas.
+
+## Recuperación de los últimos resultados
+
+Al abrir la aplicación se consulta `/api/dashboard/latest`. El servicio revisa los
+`dashboard.json` de las carpetas de trabajos, descarta archivos incompletos o sin
+metadatos válidos y elige el de mayor `modelRun.generatedAt`. La respuesta no se
+almacena en caché HTTP. No requiere que el trabajo siga registrado en memoria ni
+vuelve a entrenar el modelo. Recupera también las salidas de ejecuciones anteriores
+a la incorporación de esta funcionalidad.
+
+La fecha «Generado» corresponde a la creación del resultado, no a la selección
+del archivo ni a la visita de la web. Subir el mismo dataset y completar otra
+ejecución genera una nueva fecha, aunque las métricas resulten iguales.
